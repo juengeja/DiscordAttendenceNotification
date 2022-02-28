@@ -7,9 +7,7 @@ const bot = new TelegramBot(TOKEN);
 
 bot.on(UpdateType.Message, async (message: any) => {
 
-    const text = message.message.text || "I can't hear you";
-
-    await bot.sendMessage({ chat_id: message.message.chat.id, text: `echo ${text}` })
+await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome to our discord attendance notification bot! \nPlease visit our Website for further customisation: \n\n\n\nYour Chat-ID: ${message.message.chat.id}` })
 
 });
 
