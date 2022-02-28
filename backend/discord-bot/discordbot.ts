@@ -1,10 +1,14 @@
 import { Client, Message, Intents } from './deps.ts';
+import { Presence, ClientPresence, Member } from './deps.ts'; 
+
+//import Discord, {Intents} from 'Discord.js';
 
 const client = new Client();
+//const client = new Discord.Client([Intents.Flags.GUILDS, Intents.Flags.GUILD_MESSAGES]);
 
 const Token = Deno.env.get("DISCORD_TOKEN");
 
-
+/*
 client.on("messageCreate", (msg: Message): void => {
     const content = msg.content;
 
@@ -12,40 +16,28 @@ client.on("messageCreate", (msg: Message): void => {
         msg.reply('Pong');
     }
 });
+*/
 
-const guild = client.guilds.get("946557663003693056");
+//const guild = client.guilds.get("886953289122467852");
 
-/*
-setInterval(function () {
-    var memberCount = guild.members.filter(member => !member.user.bot).size;
-    var memberCountChannel = client.channels.get("626462657817477131");
-    memberCountChannel.setName(${guild.name} has ${memberCount} members!);
- }, 1000);
- */
-setInterval(function (){
-    const members = client.channels.get("886953289122467852");
-    console.log(String(members));
+
+client.on("ready", () => {
+    const guild = client.guilds.get("886953289122467852");
+    //console.log(guild.member);
+
+    const a = guild.member.filter()
+    setInterval(async function (){
+        const onlineMembers: any[] = await guild.member.filter(m => !m.user.bot && m.presence?.status != "offline").size;
+    }, 1000);
 })
 
-/* Endlosschleifenversion
-client.on("ready", (user): void => {
-    const list = client.guilds.array();
-
-
-})*/
-
-
+/*
+setInterval(function (){
+    const members = client.channels.get("946557663003693056");
+    console.log(String(members));
+})
+*/
 
 client.connect(Token, Intents.None);
 
 console.log(Token);
-
-/*
-client.on("voiceStateUpdate", (oldVoiceState, newVoiceState) => {
-    if(newVoiceState.channel) {
-        console.log(${newVoiceState.member?.user.tag} connected to ${newVoiceState.channel.name}.);
-    } else if (oldVoiceState.channel) { // The member disconnected from a channel.
-        console.log(${oldVoiceState.member?.user.tag} disconnected from ${oldVoiceState.channel.name}.)
-    };
-});
-*/
