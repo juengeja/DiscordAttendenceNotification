@@ -2,7 +2,7 @@ import { Client, Message, Intents } from './deps.ts';
 
 const client = new Client();
 
-const Token = Deno.env.get("BOT_TOKEN");
+const Token = Deno.env.get("DISCORD_TOKEN");
 
 
 client.on("messageCreate", (msg: Message): void => {
