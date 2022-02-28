@@ -1,23 +1,36 @@
 <script>
-  export let name;
+  let userInput = "";
+  let listOfUserInputs = [];
+
+  function handleClick(){
+    listOfUserInputs.push(userInput);
+    alert(JSON.stringify(listOfUserInputs));
+  }
 </script>
 
-<h1>Hello {name}!</h1>
-<p>
-  Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how
-  to build Svelte apps.
-</p>
+  <h1>Please enter your Chat-ID:</h1>
+  <p>
+    Contact our <a href="https://t.me/discordattendancenotificationbot">Telegram-Bot</a> to get your Chat-ID.
+  </p>
 
-<link
+  <div>
+    <input bind:value={userInput} />
+  </div>
+
+  {#if userInput.length > 5}
+    <button on:click={handleClick}> Submit </button>
+  {/if}
+  
+  <link
   href="https://fonts.googleapis.com/css?family=Overpass:100,400"
   rel="stylesheet"
-/>
-
+  />
+  
 <style>
   h1 {
-    color: #ff3e00;
+    color: #ff7b00;
     text-transform: uppercase;
     font-size: 4em;
-    font-weight: 100;
+    font-weight: 200;
   }
 </style>

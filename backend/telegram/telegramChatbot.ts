@@ -7,7 +7,12 @@ const bot = new TelegramBot(TOKEN);
 
 bot.on(UpdateType.Message, async (message: any) => {
 
-await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome to our discord attendance notification bot! \nPlease visit our Website for further customisation: \n\n\n\nYour Chat-ID: ${message.message.chat.id}` })
+await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome to our _discord attendance notification_ bot!
+Please visit our *Website* for further customisation: []
+
+
+
+Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
 
 });
 
