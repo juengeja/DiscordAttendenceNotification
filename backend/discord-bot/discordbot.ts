@@ -1,18 +1,19 @@
 //import{ Client, Message, Intents } from './deps.ts';
-import{ Client, Message, GatewayIntents } from "https://deno.land/x/harmony/mod.ts";
+import{ Client, Message, GatewayIntents, MembersManager, Presence, ChannelsManager, UsersManager } from "https://deno.land/x/harmony@v2.5.1/mod.ts";
 import{ Guild } from './deps.ts';
-import type { GuildPayload,  } from './deps.ts'
+import type { GuildPayload } from './deps.ts'
 //import { Member, User } from './deps.ts';
 //import Discord, {Client, Member, Guild} from 'discord.js';
 
 const client = new Client();
-let Token = Deno.env.get("DISCORD_TOKEN");
-console.log(await client.channels.get("886953289122467852"));
+let Token = /*Deno.env.get("DISCORD_TOKEN");*/ 'OTQ2NDI5OTA0MjYwNTk1NzEy.YheliA.SbCkXf432tWw7Nz6zvLj54rFNLA'
 
 client.connect(Token, [
     GatewayIntents.DIRECT_MESSAGES,
     GatewayIntents.GUILDS,
-    GatewayIntents.GUILD_MESSAGES
+    GatewayIntents.GUILD_MESSAGES,
+    GatewayIntents.GUILD_PRESENCES,
+    GatewayIntents.GUILD_MEMBERS
 ]);
 
 client.on("messageCreate", (msg: Message): void => {
@@ -23,10 +24,30 @@ client.on("messageCreate", (msg: Message): void => {
     }
 });
 
-console.log(await client.guilds.memberCacheSize("886953289122467852"));
-console.log(await client.guilds.memberCacheSize("947821198560100372"));
+//console.log(await client.guilds.memberCacheSize("886953289122467852"));
+//console.log(await client.guilds.memberCacheSize("947821198560100372"));
+//console.log(await client.guilds._get());
+let guild = await client.guilds.fetch('886953289122467852');
 
-console.log(await client.channels.messageCacheSize("test-text"));
+//console.log( await guild.presences.cacheName)
+const m = new MembersManager(client, guild);
+const membersList = await m.fetchList(10)
+membersList;
+
+const cm = await new ChannelsManager(client);
+
+let gcm = await guild.channels
+const usersman = await new UsersManager(client)
+
+const memberLeon = await guild.members.fetch('672215070352211968')
+
+let userLeon = await usersman.fetch('672215070352211968')
+console.log(userLeon)
+
+//console.log(await client.channels.messageCacheSize("test-text"));
+let user = await client.users.fetch('415201034080878592')
+//console.log(user)
+//console.log(client.channels.sendMessage('947821198560100372','Ping'));
 
 /*
 const u = new User(client, client.guilds.memberCacheSize )
@@ -35,9 +56,6 @@ const m = new Member(
     client, MemberPayload, "User", client.guilds.get("886953289122467852"));
 m.guild
 */
-
-client.presence.setStatus("offline");
-console.log(client.presence);
 
 
 
