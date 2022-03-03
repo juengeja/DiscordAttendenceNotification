@@ -6,7 +6,7 @@ import type { GuildPayload } from './deps.ts'
 //import Discord, {Client, Member, Guild} from 'discord.js';
 
 const client = new Client();
-let Token = /*Deno.env.get("DISCORD_TOKEN");*/ 'OTQ2NDI5OTA0MjYwNTk1NzEy.YheliA.SbCkXf432tWw7Nz6zvLj54rFNLA'
+let Token = Deno.env.get("DISCORD_TOKEN");
 
 client.connect(Token, [
     GatewayIntents.DIRECT_MESSAGES,
