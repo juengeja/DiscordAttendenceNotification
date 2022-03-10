@@ -1,19 +1,22 @@
 //import{ Client, Message, Intents } from './deps.ts';
-import{ Client, Message, GatewayIntents, MembersManager, Presence, ChannelsManager, UsersManager } from "https://deno.land/x/harmony@v2.5.1/mod.ts";
+import{ Client, Message, GatewayIntents, MembersManager, ChannelsManager, UsersManager } from "https://code.harmony.rocks/c2565e60ffc52580368f99bfc970832a19ad37b2/mod.ts";
 import{ Guild } from './deps.ts';
 import type { GuildPayload } from './deps.ts'
 //import { Member, User } from './deps.ts';
 //import Discord, {Client, Member, Guild} from 'discord.js';
+import "https://deno.land/x/dot_env@0.2.0/load.ts"
+
 
 const client = new Client();
-let Token = Deno.env.get("DISCORD_TOKEN");
+const Token = Deno.env.get("DISCORD_TOKEN");
 
 client.connect(Token, [
     GatewayIntents.DIRECT_MESSAGES,
     GatewayIntents.GUILDS,
     GatewayIntents.GUILD_MESSAGES,
     GatewayIntents.GUILD_PRESENCES,
-    GatewayIntents.GUILD_MEMBERS
+    GatewayIntents.GUILD_MEMBERS,
+    GatewayIntents.GUILD_INTEGRATIONS
 ]);
 
 client.on("messageCreate", (msg: Message): void => {
@@ -27,22 +30,34 @@ client.on("messageCreate", (msg: Message): void => {
 //console.log(await client.guilds.memberCacheSize("886953289122467852"));
 //console.log(await client.guilds.memberCacheSize("947821198560100372"));
 //console.log(await client.guilds._get());
-let guild = await client.guilds.fetch('886953289122467852');
+let guild = await client.guilds.resolve('886953289122467852');
+
+if(guild == undefined){
+    console.log('Keine guild!!')
+}else{
+
+
 
 //console.log( await guild.presences.cacheName)
 const m = new MembersManager(client, guild);
 const membersList = await m.fetchList(10)
 membersList;
 
-const cm = await new ChannelsManager(client);
+const cm = new ChannelsManager(client);
 
-let gcm = await guild.channels
-const usersman = await new UsersManager(client)
+let gcm = guild.channels
+const usersman = new UsersManager(client)
 
 const memberLeon = await guild.members.fetch('672215070352211968')
 
 let userLeon = await usersman.fetch('672215070352211968')
-console.log(userLeon)
+//console.log(userLeon)
+
+const userIDSinneckLAP = '946431511983448064'
+let myPresence = await guild.presences.resolve('672215070352211968')
+console.log(myPresence?.status)
+
+}
 
 //console.log(await client.channels.messageCacheSize("test-text"));
 let user = await client.users.fetch('415201034080878592')
@@ -80,11 +95,11 @@ nsfw: false
 }; 
 
 
-const gilde = new Guild(client, gp);
+//const gilde = new Guild(client, gp);
 
 //console.log(String(gilde.memberCount));
 
-const ml = await gilde.members.array();
+//const ml = await gilde.members.array();
 //console.log(ml[0]);
 
 // Möglichkeit 2
