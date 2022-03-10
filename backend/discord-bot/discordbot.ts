@@ -1,4 +1,4 @@
-import{ Client, Message, GatewayIntents, MembersManager, UsersManager } from "https://code.harmony.rocks/c2565e60ffc52580368f99bfc970832a19ad37b2/mod.ts";
+import{ Client, Message, GatewayIntents, MembersManager, UsersManager } from "https://code.harmony.rocks/c2565e60ffc52580368f99bfc970832a19ad37b2";
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
 
 
@@ -14,20 +14,26 @@ client.connect(Token, [
     GatewayIntents.GUILD_INTEGRATIONS
 ]);
 
-client.on("messageCreate", (msg: Message): void => {
-    // deno-lint-ignore prefer-const
-    let content = msg.content;
-
-    if(content === "Ping"){
-        msg.reply('Pong');
-    }
-});
-
 const guild = await client.guilds.resolve('886953289122467852');
 
 if(guild == undefined){
     console.log('Keine guild!!')
 }else{
+
+    client.on("messageCreate", (msg: Message): void => {
+        // deno-lint-ignore prefer-const
+        let content = msg.content;
+
+        if(content === "!Ping"){
+            msg.reply('Pong');
+        }/*
+        if (content == "!Presence") {
+            // deno-lint-ignore prefer-const
+            let tempID = msg.author.id;
+            msg.reply(await guild.presences.resolve(tempID));
+        }*/
+    });
+
 
     const m = new MembersManager(client, guild);
     const membersList = await m.fetchList(10)
