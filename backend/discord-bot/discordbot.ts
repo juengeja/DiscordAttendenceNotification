@@ -20,18 +20,18 @@ if(guild == undefined){
     console.log('Keine guild!!')
 }else{
 
-    client.on("messageCreate", (msg: Message): void => {
+    client.on("messageCreate", async (msg: Message): Promise<void> => {
         // deno-lint-ignore prefer-const
         let content = msg.content;
 
         if(content === "!Ping"){
             msg.reply('Pong');
-        }/*
+        }
         if (content == "!Presence") {
             // deno-lint-ignore prefer-const
-            let tempID = msg.author.id;
-            msg.reply(await guild.presences.resolve(tempID));
-        }*/
+            let authorPresence = await guild.presences.resolve(msg.author.id);
+            msg.reply(authorPresence?.status);
+        }
     });
 
 
@@ -49,9 +49,8 @@ if(guild == undefined){
     const userLeon = await usersman.fetch('672215070352211968')
     console.log(userLeon.id)
 
-    const userIDSinneckLAP = '946431511983448064'
-    const myPresence = await guild.presences.resolve(userIDSinneckLAP)
-    console.log(myPresence)
+    const _userIDSinneckLAP = '946431511983448064'
+    const myPresence = await guild.presences.resolve('672215070352211968')
     console.log(myPresence?.status)
 
 }
