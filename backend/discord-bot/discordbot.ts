@@ -30,7 +30,7 @@ if(guild == undefined){
         if (content == "!Presence") {
             // deno-lint-ignore prefer-const
             let authorPresence = await guild.presences.resolve(msg.author.id);
-            msg.reply(authorPresence?.status);
+            msg.reply(`Your presence status: ${authorPresence?.status}`);
         }
     });
 
