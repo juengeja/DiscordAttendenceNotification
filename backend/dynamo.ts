@@ -1,6 +1,5 @@
-import { createClient } from "https://denopkg.com/chiefbiiko/dynamodb@master/mod.ts";
+import { createClient } from "https://deno.land/x/dynamodb@v1.0.0/mod.ts";
 import "https://deno.land/x/dot_env@0.2.0/load.ts";
-//import { DynamoDB } from "https://sdk.amazonaws.com/js/aws-sdk-2.1095.0.min.js";
 
 let accessKeyId = Deno.env.get("ACCESSKEYID");
 let secretAccessKey = Deno.env.get("SECRETACCESSKEY");
