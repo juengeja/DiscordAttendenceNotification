@@ -7,6 +7,9 @@ body,
 }
 
 body {
+  font-size: 100%;
+  background-color: lightgray;
+  text-align: center;
   color: #333;
   margin: 0;
   padding: 8px;
@@ -28,9 +31,11 @@ a:visited {
   color: rgb(0, 80, 160);
 }
 
+/*
 label {
   display: block;
 }
+*/
 
 input,
 button,
@@ -50,10 +55,18 @@ input:disabled {
   color: #ccc;
 }
 
+
 button {
-  color: #333;
-  background-color: #f4f4f4;
-  outline: none;
+  width: 350px;
+  height: 75px;
+  color: orange;
+  background-color: lightcyan;
+  outline: black;
+  border-style: solid;
+  border-width: 2px;
+  font-size: 25px;
+  cursor: pointer;
+
 }
 
 button:disabled {
@@ -67,3 +80,9 @@ button:not(:disabled):active {
 button:focus {
   border-color: #666;
 }
+
+/*
+button:active {
+  border: #333;
+}
+*/
