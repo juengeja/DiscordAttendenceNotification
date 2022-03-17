@@ -53,7 +53,7 @@ if(guild == undefined){
     console.log(myPresence?.status)
 
     client.on("presenceUpdate", (presenceUpdate: Presence) => {
-        if(presenceUpdate.status == 'online'){
+        if(presenceUpdate.status != 'offline'){
             client.channels.sendMessage('947821198560100372', `Der User \`${presenceUpdate.user.username}\` hat seinen Status auf \`${presenceUpdate.status}\` geändert!`, );
         }
     })
