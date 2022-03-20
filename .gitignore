@@ -1,3 +1,4 @@
 backend/discord-bot/.env
 backend/telegram/.env
 .env
+channels.json
