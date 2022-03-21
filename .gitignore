@@ -1,4 +1,7 @@
 backend/discord-bot/.env
 backend/telegram/.env
 .env
-channels.json
+Channel.json
+Guild.json
+User.json
+Chat.json
