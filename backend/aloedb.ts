@@ -1,7 +1,7 @@
 import { Database } from 'https://deno.land/x/aloedb/mod.ts';
 export { insertChat, insertChannel, insertGuild, insertUser };
 export { findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByChatID };
-export { findManyChannelByChatID, findManyGuildByChatID, findManyUserByChatID };
+export { findManyChannelByID, findManyGuildByID, findManyUserByID };
 
 interface Chat {
     chatID: number
@@ -9,17 +9,20 @@ interface Chat {
 
 interface Channel {
     channelID: number,
-    chatID: number
+    chatID: number,
+    name: string
 }
 
 interface Guild {
     guildID: number,
-    chatID: number
+    chatID: number,
+    name: string
 }
 
 interface User {
     userID: number,
-    chatID: number
+    chatID: number, 
+    name: string
 }
 
 const chatDB = new Database<Chat>({path:"./Chat.json", autosave:true});
@@ -59,14 +62,20 @@ function findUserByChatID(chatID: number){
     return userDB.findOne({chatID:chatID})
 }
 
-function findManyChannelByChatID(chatID: number){
-    return channelDB.findMany({chatID:chatID})
+function findManyChannelByID(chatID?: number, channelID?: number){
+    if(chatID == undefined) return channelDB.findMany({channelID:channelID});
+    if(channelID == undefined) return channelDB.findMany({chatID:chatID})
+    return channelDB.findMany({chatID:chatID, channelID:channelID})
 }
 
-function findManyGuildByChatID(chatID: number){
-    return guildDB.findMany({chatID:chatID})
+function findManyGuildByID(chatID?: number, guildID?: number){
+    if(chatID == undefined) return guildDB.findMany({guildID:guildID});
+    if(guildID == undefined) return guildDB.findMany({chatID:chatID})
+    return guildDB.findMany({chatID:chatID, guildID:guildID})
 }
 
-function findManyUserByChatID(chatID: number){
-    return userDB.findMany({chatID:chatID})
+function findManyUserByID(chatID?: number, userID?: number){
+    if(chatID == undefined) return userDB.findMany({userID:userID});
+    if(userID == undefined) return userDB.findMany({chatID:chatID})
+    return userDB.findMany({chatID:chatID, userID:userID})
 }
