@@ -1,4 +1,6 @@
 <script>
+  //import page from 'page';
+
   import Login from "@/components/Login.svelte";
   import Home from "@/components/Home.svelte";
 
@@ -17,8 +19,10 @@
 
 <main>
 <Login />
-<Home />
 </main>
+
+
+
 
 
 <!--

@@ -2,7 +2,7 @@
 
 </script>
 
-<form action="insert.php" method="post">
+<form name="Infos" onsubmit="return false" action="insert.php" method="post">
 <h1><b>Add to List of Notifications:</b></h1>
 
 <div class="div1">

@@ -8,7 +8,8 @@
 
   function handleClick(){
     listOfChat_IDs.push(Chat_ID);
-    alert(JSON.stringify(listOfChat_IDs));
+    /*alert(JSON.stringify(listOfChat_IDs));*/
+    window.location.href = "./Home.svelte"
   }   
   
   
@@ -33,9 +34,11 @@
     <input bind:value={Chat_ID} />
   </div>
 
-      {#if Chat_ID.length > 5}
-    <button type="submit" on:click={handleClick}>Submit</button>
+          {#if Chat_ID.length > 5}
+    <button type="submit" onsubmit="return false" onclick="seitewechseln" on:click={handleClick}>Submit</button>
   {/if}
+
+
   
   <!--
   <link
