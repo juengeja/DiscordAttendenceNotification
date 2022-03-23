@@ -1,0 +1,27 @@
+{
+  "name": "discordattendencenotification",
+  "version": "1.0.0",
+  "description": "The goal is to develop a Discord bot that informs about the presence of certain users via Telegram",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juengeja/DiscordAttendenceNotification.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juengeja/DiscordAttendenceNotification/issues"
+  },
+  "homepage": "https://github.com/juengeja/DiscordAttendenceNotification#readme",
+  "dependencies": {
+    "page": "^1.11.6"
+  },
+  "start": "sirv public --single",
+  "devDependencies": {
+    "isarray": "^2.0.5"
+  }
+}

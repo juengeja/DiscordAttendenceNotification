@@ -1,5 +1,4 @@
 
-
 <script>
 //import Home from "./Home.svelte";
 
@@ -12,17 +11,6 @@
     window.location.href = "./Home.svelte"
   }   
   
-  
-  function klicken(){
-    console.dir(Home);
-    
-    /*window.location=*/
-
-    // (in Script)
-    /*<a href="../components/Home.svelte" target="_self">Home</a>
-    <a href="Login.svelte" target="_self">Login</a>*/
-  }
-
 </script>
 
   <h1><b>Please enter your Chat-ID:</b></h1>
@@ -38,8 +26,6 @@
     <button type="submit" onsubmit="return false" onclick="seitewechseln" on:click={handleClick}>Submit</button>
   {/if}
 
-
-  
   <!--
   <link
   href="https://fonts.googleapis.com/css?family=Overpass:100,400"

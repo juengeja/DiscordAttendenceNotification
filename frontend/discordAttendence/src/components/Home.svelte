@@ -56,7 +56,6 @@
   cursor: pointer;
 }
 
-
 h1 {
   color: #ff7b00; 
   /*text-transform: uppercase;*/

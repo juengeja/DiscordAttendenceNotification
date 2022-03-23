@@ -1,39 +1,34 @@
 <script>
-  //import page from 'page';
+  import router from '../node_modules/page/page.mjs';
 
   import Login from "@/components/Login.svelte";
   import Home from "@/components/Home.svelte";
 
+  let page;
+  let params;
 
-  /*
-  const webpages = [   
-    { name: "Login", component: Login}, 
-    { name: "Home", component: Home }
-  ];
-  let selectedPage = webpages[0];
-  $: console.dir(selectedPage)
-  const loadPage = (obj) => {selectedPage = obj};
-*/
+  router('/', () => page = Login)
+  router('/Home.svelte', (Context, next) => {
+    params = Context.params;
+    next();
+  }, () => page = Home);
 
+  router.start();
+  
 </script>
-
-<main>
-<Login />
-</main>
-
-
-
 
 
 <!--
-{#each webpages as webpageObj}
-	<button class="tablink" 
-					title={webpageObj.name}
-					on:click={() => loadPage(webpageObj)}>{webpageObj.name}</button>
-{/each}
- <svelte:component this={selectedPage.component} />
+  <svelte:component this={page} {params} />
 -->
 
+{#if page === Login}
+<Login />
+{/if}
+
+{#if page === Home}
+<Home />
+{/if}
 
 <style>
   /*main {
