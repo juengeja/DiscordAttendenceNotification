@@ -1,6 +1,7 @@
-import{ Client, Message, GatewayIntents, MembersManager, UsersManager, Presence } from "https://code.harmony.rocks/c2565e60ffc52580368f99bfc970832a19ad37b2";
+import { Client, Message, GatewayIntents, MembersManager, UsersManager, Presence } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
-
+import { sendMessage } from "../telegram/telegramChatbot.ts";
+import { findManyChannelByID, findManyGuildByID, findManyUserByID } from "../aloedb.ts";
 
 const client = new Client();
 const Token = Deno.env.get("DISCORD_TOKEN");
@@ -32,30 +33,17 @@ if(guild == undefined){
             let authorPresence = await guild.presences.resolve(msg.author.id);
             msg.reply(`Your presence status: \`${authorPresence?.status}\``);
         }
-    });
-    
-    const m = new MembersManager(client, guild);
-    const membersList = await m.fetchList(10)
-    membersList;
-    
-    const usersman = new UsersManager(client)
-    
-    const memberLeon = await guild.members.resolve('672215070352211968')
-    if(memberLeon != undefined){
-        console.log(memberLeon.id)
-    }
-    
-    const userLeon = await usersman.fetch('672215070352211968')
-    console.log(userLeon.id)
-    
-    const _userIDSinneckLAP = '946431511983448064'
-    const myPresence = await guild.presences.resolve('672215070352211968')
-    console.log(myPresence?.status)
-
-    client.on("presenceUpdate", (presenceUpdate: Presence) => {
-        if(presenceUpdate.status != 'offline'){
-            client.channels.sendMessage('947821198560100372', `Der User \`${presenceUpdate.user.username}\` hat seinen Status auf \`${presenceUpdate.status}\` geändert!`, );
-        }
     })
-
 }
+
+client.on("presenceUpdate", async (presenceUpdate: Presence) => {
+    if(presenceUpdate.status != 'offline'){
+        // deno-lint-ignore prefer-const
+        let user = await findManyUserByID(undefined,parseInt(presenceUpdate.user.id))
+        if(user.length != 0){
+            user.forEach(element => {
+                sendMessage(element.chatID, `The user _${element.name}_ is now *${presenceUpdate.status}*!`)
+            });
+        }
+    }
+})
