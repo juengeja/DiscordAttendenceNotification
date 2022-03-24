@@ -46,7 +46,7 @@ function insertUser(user: User){
     userDB.insertOne(user)
 }
 
-function findChatByChatID(chatID: number){
+function findChatByChatID(chatID: number): Chat {
     return chatDB.findOne({chatID:chatID})
 }
 
