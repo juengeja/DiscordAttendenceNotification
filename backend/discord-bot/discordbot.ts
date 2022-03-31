@@ -1,4 +1,4 @@
-import { Client, Message, GatewayIntents, MembersManager, UsersManager, Presence } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
+import { Client, Message, GatewayIntents, Presence, Channel } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
 import { sendMessage } from "../telegram/telegramChatbot.ts";
 import { findManyChannelByID, findManyGuildByID, findManyUserByID } from "../aloedb.ts";
@@ -37,13 +37,20 @@ if(guild == undefined){
 }
 
 client.on("presenceUpdate", async (presenceUpdate: Presence) => {
-    if(presenceUpdate.status != 'offline'){
+    if(presenceUpdate.status == 'online'){
         // deno-lint-ignore prefer-const
         let user = await findManyUserByID(undefined,parseInt(presenceUpdate.user.id))
         if(user.length != 0){
             user.forEach(element => {
-                sendMessage(element.chatID, `The user _${element.name}_ is now *${presenceUpdate.status}*!`)
+                let name;
+                if(element.name == undefined) name = presenceUpdate.user.username
+                else name = element.name
+                sendMessage(element.chatID, `The user _${name}_ is now *${presenceUpdate.status}*!`)
             });
         }
     }
+})
+
+client.on("typingStart", async (update: any) => {
+    console.log(await update)
 })

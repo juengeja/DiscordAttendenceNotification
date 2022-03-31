@@ -10,16 +10,24 @@ const bot = new TelegramBot(TOKEN);
 // deno-lint-ignore no-explicit-any
 bot.on(UpdateType.Message, async (message: any) => {
 
-    if(findChatByChatID(parseInt(message.message.chat.id)) == null){
+    if(await findChatByChatID(parseInt(message.message.chat.id)) == undefined){
         insertChat({chatID:parseInt(message.message.chat.id)})
-    }else{
+    
         await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome to our _discord attendance notification_ bot!
 Please visit our *Website* for further customisation:
 
 
 
 Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
+    }else{
+        await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome back to our _discord attendance notification_ bot!
+        Please visit our *Website* for further customisation:
+        
+        
+        
+        Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
     }
+
 })
 
 bot.run({

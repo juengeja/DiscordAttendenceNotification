@@ -46,35 +46,35 @@ function insertUser(user: User){
     userDB.insertOne(user)
 }
 
-function findChatByChatID(chatID: number): Chat {
+function findChatByChatID(chatID: number): Promise<Chat | null> {
     return chatDB.findOne({chatID:chatID})
 }
 
-function findChannelByChatID(chatID: number){
+function findChannelByChatID(chatID: number): Promise<Channel | null> {
     return channelDB.findOne({chatID:chatID})
 }
 
-function findGuildByChatID(chatID: number){
+function findGuildByChatID(chatID: number): Promise<Guild | null> {
     return guildDB.findOne({chatID:chatID})
 }
 
-function findUserByChatID(chatID: number){
+function findUserByChatID(chatID: number): Promise<User | null> {
     return userDB.findOne({chatID:chatID})
 }
 
-function findManyChannelByID(chatID?: number, channelID?: number){
+function findManyChannelByID(chatID?: number, channelID?: number): Promise<Channel[]> {
     if(chatID == undefined) return channelDB.findMany({channelID:channelID});
     if(channelID == undefined) return channelDB.findMany({chatID:chatID})
     return channelDB.findMany({chatID:chatID, channelID:channelID})
 }
 
-function findManyGuildByID(chatID?: number, guildID?: number){
+function findManyGuildByID(chatID?: number, guildID?: number): Promise<Guild[]> {
     if(chatID == undefined) return guildDB.findMany({guildID:guildID});
     if(guildID == undefined) return guildDB.findMany({chatID:chatID})
     return guildDB.findMany({chatID:chatID, guildID:guildID})
 }
 
-function findManyUserByID(chatID?: number, userID?: number){
+function findManyUserByID(chatID?: number, userID?: number): Promise<User[]> {
     if(chatID == undefined) return userDB.findMany({userID:userID});
     if(userID == undefined) return userDB.findMany({chatID:chatID})
     return userDB.findMany({chatID:chatID, userID:userID})
