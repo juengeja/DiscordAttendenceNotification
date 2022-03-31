@@ -1,6 +1,6 @@
 import { TelegramBot, UpdateType } from "https://deno.land/x/telegram_chatbot@v1.0.0/mod.ts"
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
-import { insertChat, findChatByChatID } from "../aloedb.ts"
+import { insertChat, findChatByChatID } from "./aloedb.ts"
 export { sendMessage }
 
 const TOKEN = Deno.env.get("TELEGRAM_TOKEN");

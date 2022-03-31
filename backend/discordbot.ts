@@ -1,7 +1,7 @@
 import { Client, Message, GatewayIntents, Presence, Channel } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
-import { sendMessage } from "../telegram/telegramChatbot.ts";
-import { findManyChannelByID, findManyGuildByID, findManyUserByID } from "../aloedb.ts";
+import { sendMessage } from "./telegramChatbot.ts";
+import { findManyChannelByID, findManyGuildByID, findManyUserByID } from "./aloedb.ts";
 
 const client = new Client();
 const Token = Deno.env.get("DISCORD_TOKEN");
