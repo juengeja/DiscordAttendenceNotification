@@ -4,6 +4,10 @@ import { insertChannel, insertGuild, insertUser } from "./aloedb.ts";
 
 const app = opine();
 
+app.use((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002')
+})
+
 // deno-lint-ignore no-explicit-any
 app.get("/", function (req: any, res: any) {
     res.send(req);

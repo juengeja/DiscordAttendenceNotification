@@ -1,15 +1,26 @@
-
 <script>
 //import Home from "./Home.svelte";
+  import { onMount } from "svelte"
 
-  let Chat_ID = "";
+  let Chat_ID = 3;
   let listOfChat_IDs = [];
+  
+  onMount(handleClick)
+  const controller = new AbortController();
+  const signal = controller.signal;
 
-  function handleClick(){
-    listOfChat_IDs.push(Chat_ID);
-    /*alert(JSON.stringify(listOfChat_IDs));*/
-    window.location.href = "./Home.svelte"
-  }   
+  async function handleClick(){
+
+    alert("Hi")
+    const exists = await fetch(`http://localhost:3002/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal})
+    alert(exists)
+  
+    if(exists){
+      alert("a")
+      window.location.href = "./Home.svelte"
+    }
+  }
+
   
 </script>
 
@@ -23,7 +34,7 @@
   </div>
 
           {#if Chat_ID.length > 5}
-    <button type="submit" onsubmit="return false" onclick="seitewechseln" on:click={handleClick}>Submit</button>
+    <button type="submit" onsubmit="return false" on:click={handleClick}>Submit</button>
   {/if}
 
   <!--

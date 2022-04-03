@@ -1,6 +1,5 @@
 <script>
   import router from '../node_modules/page/page.mjs';
-
   import Login from "@/components/Login.svelte";
   import Home from "@/components/Home.svelte";
 
