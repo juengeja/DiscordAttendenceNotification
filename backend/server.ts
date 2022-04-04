@@ -5,7 +5,7 @@ import { insertChannel, insertGuild, insertUser } from "./aloedb.ts";
 const app = opine();
 
 app.use((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
 })
 
 // deno-lint-ignore no-explicit-any
@@ -72,6 +72,6 @@ app.get("/api/v1/persistence/put/guild/:guild", function (req: any, res: any) {
 });
 
 app.listen(
-    3002,
-    () => console.log("server has started on http://localhost:3002 🚀"),
+    8000,
+    () => console.log("server has started on http://localhost:8000 🚀"),
 );

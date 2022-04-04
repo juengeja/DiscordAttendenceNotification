@@ -16,16 +16,16 @@ bot.on(UpdateType.Message, async (message: any) => {
         await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome to our _discord attendance notification_ bot!
 Please visit our *Website* for further customisation:
 
-
+        5.45.107.109:8000
 
 Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
     }else{
         await bot.sendMessage({ chat_id: message.message.chat.id, text: `Welcome back to our _discord attendance notification_ bot!
-        Please visit our *Website* for further customisation:
-        
-        
-        
-        Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
+Please visit our *Website* for further customisation:
+
+        5.45.107.109:8000
+
+Your Chat-ID: ${message.message.chat.id}`, parse_mode: `Markdown` })
     }
 
 })

@@ -12,7 +12,7 @@
   async function handleClick(){
 
     alert("Hi")
-    const exists = await fetch(`http://localhost:3002/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal})
+    const exists = await fetch(`http://localhost:8000/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal})
     alert(exists)
   
     if(exists){
