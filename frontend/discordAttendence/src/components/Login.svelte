@@ -5,14 +5,14 @@
   let Chat_ID = 3;
   let listOfChat_IDs = [];
   
-  onMount(handleClick)
+  //onMount(handleClick)
   const controller = new AbortController();
   const signal = controller.signal;
 
   async function handleClick(){
 
     alert("Hi")
-    const exists = await fetch(`http://localhost:8000/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal})
+    const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
     alert(exists)
   
     if(exists){
