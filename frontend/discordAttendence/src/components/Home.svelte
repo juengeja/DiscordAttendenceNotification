@@ -20,6 +20,18 @@
   <input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required>
 </div>
 
+<div class="divServerName">
+  <input class="l1" id="server_nickname" type="text" name="server_nickname" value="" placeholder="server-nickname">
+</div>
+
+<div class="divChannelName">
+  <input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname">
+</div>
+
+<div class="divUserName">
+  <input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname">
+</div>
+
 <div>
   <button class="b1" type="submit">Submit</button>
   <button class="b2" type="reset">Reset</button> 

@@ -1,4 +1,4 @@
-import { Client, Message, GatewayIntents, Presence, Channel } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
+import { Client, Message, GatewayIntents, Presence, VoiceState } from "https://deno.land/x/harmony@v2.6.0/mod.ts";
 import "https://deno.land/x/dot_env@0.2.0/load.ts"
 import { sendMessage } from "./telegramChatbot.ts";
 import { findManyChannelByID, findManyGuildByID, findManyUserByID } from "./aloedb.ts";
@@ -12,7 +12,8 @@ client.connect(Token, [
     GatewayIntents.GUILD_MESSAGES,
     GatewayIntents.GUILD_PRESENCES,
     GatewayIntents.GUILD_MEMBERS,
-    GatewayIntents.GUILD_INTEGRATIONS
+    GatewayIntents.GUILD_INTEGRATIONS,
+    GatewayIntents.GUILD_VOICE_STATES
 ]);
 
 const guild = await client.guilds.resolve('886953289122467852');
@@ -51,6 +52,50 @@ client.on("presenceUpdate", async (presenceUpdate: Presence) => {
     }
 })
 
-client.on("typingStart", async (update: any) => {
-    console.log(await update)
+client.on("voiceStateUpdate", async (voiceStateUpdate: VoiceState) => {
+    const channel = voiceStateUpdate.channel
+    const user = voiceStateUpdate.user
+
+    if(channel == null) return;
+
+    const channelSubscribers = await findManyChannelByID(undefined, parseInt(channel.id))
+    const userSubscribers = await findManyUserByID(undefined, parseInt(user.id))
+
+    channelSubscribers.forEach(subscribedChannel => {
+        let name;
+        userSubscribers.forEach(subscribedUser => {
+            if(subscribedUser.userID == parseInt(user.id)) return;
+        });
+        if(subscribedChannel.name == undefined) name = channel.name;
+        else name = subscribedChannel.name;
+        if (name != undefined && user.username != undefined) {
+            sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel _${name}_ that you subscribed to.`)
+        }
+        if(name != undefined && user.username == undefined){
+            sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel _${name}_ that you subscribed to.`)
+        }
+        if (name == undefined && user.username != undefined) {
+            sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
+        }
+        if(name == undefined && user.username == undefined){
+            sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
+        }
+    });
+
+    userSubscribers.forEach(subscribedUser => {
+        let username;
+        if(subscribedUser.name == undefined) username = user.username;
+        if(channel.name == undefined && username == undefined){
+            sendMessage(subscribedUser.chatID, `The user with ID _${user.id}_ that you subscribed to joined the voice channel with ID _${channel.id}_.`)
+        }
+        if(channel.name == undefined && username != undefined){
+            sendMessage(subscribedUser.chatID, `The user _${username}_ that you subscribed to joined the voice channel with ID _${channel.id}_.`)
+        }
+        if(channel.name != undefined && username == undefined){
+            sendMessage(subscribedUser.chatID, `The user with ID _${user.id}_ that you subscribed to joined the voice channel _${channel.name}_.`)
+        }
+        if(channel.name != undefined && username != undefined){
+            sendMessage(subscribedUser.chatID, `The user _${username}_ that you subscribed to joined the voice channel _${channel.name}_.`)
+        }
+    });
 })

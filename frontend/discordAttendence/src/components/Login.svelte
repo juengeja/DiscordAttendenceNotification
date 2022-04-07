@@ -1,11 +1,9 @@
 <script>
-//import Home from "./Home.svelte";
   import { onMount } from "svelte"
 
   let Chat_ID = 3;
   let listOfChat_IDs = [];
   
-  //onMount(handleClick)
   const controller = new AbortController();
   const signal = controller.signal;
 
@@ -13,10 +11,8 @@
 
     alert("Hi")
     const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
-    alert(exists)
   
     if(exists){
-      alert("a")
       window.location.href = "./Home.svelte"
     }
   }
