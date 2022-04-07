@@ -52,39 +52,44 @@ client.on("presenceUpdate", async (presenceUpdate: Presence) => {
     }
 })
 
-client.on("voiceStateUpdate", async (voiceStateUpdate: VoiceState) => {
+client.on("voiceStateAdd", async (voiceStateUpdate: VoiceState) => {
     const channel = voiceStateUpdate.channel
     const user = voiceStateUpdate.user
-
+    
     if(channel == null) return;
 
     const channelSubscribers = await findManyChannelByID(undefined, parseInt(channel.id))
     const userSubscribers = await findManyUserByID(undefined, parseInt(user.id))
-
+    
     channelSubscribers.forEach(subscribedChannel => {
         let name;
+        let isSubscribedUser;
         userSubscribers.forEach(subscribedUser => {
-            if(subscribedUser.userID == parseInt(user.id)) return;
+            if(subscribedUser.userID == parseInt(user.id)) isSubscribedUser = true;
         });
-        if(subscribedChannel.name == undefined) name = channel.name;
-        else name = subscribedChannel.name;
-        if (name != undefined && user.username != undefined) {
-            sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel _${name}_ that you subscribed to.`)
-        }
-        if(name != undefined && user.username == undefined){
-            sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel _${name}_ that you subscribed to.`)
-        }
-        if (name == undefined && user.username != undefined) {
-            sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
-        }
-        if(name == undefined && user.username == undefined){
-            sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
+        if(!isSubscribedUser){
+            if(subscribedChannel.name == undefined) name = channel.name;
+            else name = subscribedChannel.name;
+            if (name != undefined && user.username != undefined) {
+                sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel _${name}_ that you subscribed to.`)
+            }
+            if(name != undefined && user.username == undefined){
+                sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel _${name}_ that you subscribed to.`)
+            }
+            if (name == undefined && user.username != undefined) {
+                sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
+            }
+            if(name == undefined && user.username == undefined){
+                sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
+            }
         }
     });
 
     userSubscribers.forEach(subscribedUser => {
         let username;
-        if(subscribedUser.name == undefined) username = user.username;
+        if(subscribedUser.name == undefined){
+            username = user.username;
+        } else username = subscribedUser.name;
         if(channel.name == undefined && username == undefined){
             sendMessage(subscribedUser.chatID, `The user with ID _${user.id}_ that you subscribed to joined the voice channel with ID _${channel.id}_.`)
         }
