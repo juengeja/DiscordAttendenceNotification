@@ -5,3 +5,6 @@ Channel.json
 Guild.json
 User.json
 Chat.json
+frontend/discordAttendence/public/dist/
+frontend/discordAttendence/.DS_Store
+frontend/discordAttendence/dist
