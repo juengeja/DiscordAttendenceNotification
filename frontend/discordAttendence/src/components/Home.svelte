@@ -3,7 +3,7 @@
 </script>
 
 <h1><b>Add to List of Notifications:</b></h1>
-
+<form>
 <div class="grid-container">
   <div class="grid-item"><label for="discord_server">discord server:</label></div>
   <div class="grid-item"><input class="l1" id="discord_server" type="text" name="discord_server" value="" placeholder="server-id"></div>  
@@ -17,16 +17,18 @@
 </div>
 
 <div>
-  <button class="b1" type="submit">Submit</button>
-  <button class="b2" type="reset">Reset</button> 
+  <button class="button1" type="submit">Submit</button>
+  <button class="button2" type="reset">Reset</button> 
 </div>
+</form>
+
 
 <style>
-.b1 {
+.button1 {
   background-color: greenyellow;
 }
 
-.b2 {
+.button2 {
   background-color: red;
 }
 

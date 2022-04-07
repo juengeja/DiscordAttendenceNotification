@@ -1,3 +1,4 @@
+
 html,
 body,
 #__snel {
@@ -31,8 +32,8 @@ a:visited {
   color: rgb(0, 80, 160);
 }
 
+
 input,
-button,
 select,
 textarea {
   font-family: inherit;
@@ -45,6 +46,7 @@ textarea {
   border-radius: 2px;
 }
 
+
 input:disabled {
   color: #ccc;
 }
@@ -52,8 +54,8 @@ input:disabled {
 
 button {
   text-align: center;
-  height: 1%;
-  width: 10%;
+  height: 4vh;
+  width: 6vw;
   color: black;
   outline: black;
   border-style: solid;
@@ -73,4 +75,13 @@ button:not(:disabled):active {
 button:focus {
   border-color: #666;
 }
+
+
+
+
+
+
+
+
+
 
