@@ -9,7 +9,6 @@
 
   async function handleClick(){
 
-    alert("Hi")
     const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
   
     if(exists){
@@ -32,13 +31,6 @@
           {#if Chat_ID.length > 5}
     <button type="submit" onsubmit="return false" on:click={handleClick}>Submit</button>
   {/if}
-
-  <!--
-  <link
-  href="https://fonts.googleapis.com/css?family=Overpass:100,400"
-  rel="stylesheet"
-  />
-  -->
   
 <style>
   h1 {
