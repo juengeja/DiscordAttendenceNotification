@@ -5,31 +5,16 @@
 <form name="Infos" onsubmit="return false" action="insert.php" method="post">
 <h1><b>Add to List of Notifications:</b></h1>
 
-<div class="div1">
-  <label for="discord_server">discord server:</label>
-  <input class="l1" id="discord_server" type="text" name="discord_server" value="" placeholder="server-id">
-</div>
-
-<div class="div2">
-  <label for="specific_channel">specific channel:</label>
-  <input id="specific_channel" tpye="text" name="specific_channel" value="" placeholder="channel-id">
-</div>
-
-<div class="div3">
-  <label for="discord_user">discord user:</label>
-  <input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required>
-</div>
-
-<div class="divServerName">
-  <input class="l1" id="server_nickname" type="text" name="server_nickname" value="" placeholder="server-nickname">
-</div>
-
-<div class="divChannelName">
-  <input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname">
-</div>
-
-<div class="divUserName">
-  <input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname">
+<div class="grid-container">
+  <div class="grid-item"><label for="discord_server">discord server:</label></div>
+  <div class="grid-item"><input class="l1" id="discord_server" type="text" name="discord_server" value="" placeholder="server-id"></div>  
+  <div class="grid-item"><input class="l1" id="server_nickname" type="text" name="server_nickname" value="" placeholder="server-nickname"></div>
+  <div class="grid-item"><label for="specific_channel">specific channel:</label></div>
+  <div class="grid-item"><input id="specific_channel" tpye="text" name="specific_channel" value="" placeholder="channel-id"></div>
+  <div class="grid-item"><input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname"></div>
+  <div class="grid-item"><label for="discord_user">discord user:</label></div>
+  <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required></div>
+  <div class="grid-item"><input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname"></div>
 </div>
 
 <div>
@@ -77,27 +62,19 @@ h1 {
 }
 
 div {
-  padding-right: 60%;
+  /*padding-right: 60%;
   text-align: right;
-  padding-top: 0px;
+  padding-top: 0px;*/
 }
-.div1 {
-  padding-right: 55%;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 30%;
+  padding-right: 40%;
+  gap: 10px;
+  grid-template-rows: repeat(100px, auto);
   text-align: right;
-  padding-top: 5px;
-}
-
-.div2 {
-  padding-right: 55%;
-  text-align: right;
-  padding-top: 5px; 
-}
-
-.div3 {
-  padding-right: 55%;
-  text-align: right;
-  padding-top: 5px; 
-  padding-bottom: 1%;
+  align-items: baseline;
 }
 .l1 {
   padding-left: 5px;
