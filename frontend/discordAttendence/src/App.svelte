@@ -16,11 +16,6 @@
   
 </script>
 
-
-<!--
-  <svelte:component this={page} {params} />
--->
-
 {#if page === Login}
 <Login />
 {/if}
@@ -30,16 +25,5 @@
 {/if}
 
 <style>
-  /*main {
-    text-align: center;
-    padding: 1em;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }*/
 </style>

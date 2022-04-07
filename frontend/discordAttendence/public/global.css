@@ -31,12 +31,6 @@ a:visited {
   color: rgb(0, 80, 160);
 }
 
-/*
-label {
-  display: block;
-}
-*/
-
 input,
 button,
 select,
@@ -57,16 +51,15 @@ input:disabled {
 
 
 button {
-  width: 350px;
-  height: 75px;
-  color: orange;
-  background-color: lightcyan;
+  text-align: center;
+  height: 1%;
+  width: 10%;
+  color: black;
   outline: black;
   border-style: solid;
   border-width: 2px;
-  font-size: 25px;
+  font-size: 100%;
   cursor: pointer;
-
 }
 
 button:disabled {
@@ -81,8 +74,3 @@ button:focus {
   border-color: #666;
 }
 
-/*
-button:active {
-  border: #333;
-}
-*/
