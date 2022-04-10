@@ -36,7 +36,7 @@ app.get("/api/v1/persistence/get/userByID/:chatID", async function (req: any, re
 })
 
 // deno-lint-ignore no-explicit-any
-app.get("/api/v1/persistence/put/channel/:channel", function (req: any, res: any) {
+app.get("/api/v1/persistence/post/channel/:channel", function (req: any, res: any) {
     const newChannel = req.params.channel
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
     if(newChannel.channelID != undefined && newChannel.chatID != undefined){
@@ -49,7 +49,7 @@ app.get("/api/v1/persistence/put/channel/:channel", function (req: any, res: any
 });
 
 // deno-lint-ignore no-explicit-any
-app.get("/api/v1/persistence/put/user/:user", function (req: any, res: any) {
+app.get("/api/v1/persistence/post/user/:user", function (req: any, res: any) {
     const newUser = req.params.user
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
     if(newUser.userID != undefined && newUser.chatID != undefined){
@@ -62,7 +62,7 @@ app.get("/api/v1/persistence/put/user/:user", function (req: any, res: any) {
 });
 
 // deno-lint-ignore no-explicit-any
-app.get("/api/v1/persistence/put/guild/:guild", function (req: any, res: any) {
+app.get("/api/v1/persistence/post/guild/:guild", function (req: any, res: any) {
     const newGuild = req.params.guild
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
     if(newGuild.userID != undefined && newGuild.chatID != undefined){
@@ -73,6 +73,11 @@ app.get("/api/v1/persistence/put/guild/:guild", function (req: any, res: any) {
         res.send("failed")
     }
 });
+
+app.post("/test", function (req: any, res: any) {
+    console.log(req)
+    res.send("Hello there")
+})
 
 app.listen(
     8800,

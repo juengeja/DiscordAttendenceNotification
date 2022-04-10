@@ -10,6 +10,14 @@
   async function handleClick(){
 
     const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
+
+    const guild = {
+      guildID: 123456789,
+      chatID: 987654321,
+      name: "example"
+    }
+
+    alert(await fetch(`http://localhost:8800/test`, {signal: signal, method: "POST", body: JSON.stringify({guild})}))
   
     if(exists){
       window.location.href = "./Home.svelte"
