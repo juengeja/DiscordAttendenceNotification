@@ -5,11 +5,10 @@
 
   let page;
   let params;
+  let Chat_ID;
 
-
-
-  async function handleClick(){
-
+  async function handleClickSubmitLoginParent(){
+    
     alert(Chat_ID);
 
     const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
@@ -18,16 +17,6 @@
     window.location.href = "./Home.svelte"
     }
   }
-
-
-  let Chat_ID;
-
-  const addChatID = (event) => {
-    Chat_ID = [Chat_ID, event.detail];
-  };
-
-  //let Chat_ID = 123456789;
-  //alert(chat_ID);
 
   router('/', () => page = Login)
   router('/Home.svelte', (Context, next) => {
@@ -39,14 +28,8 @@
   
 </script>
 
-<!--
-<Login bind:Chat_ID/>
-  <p>{Chat_ID}</p>
--->
-
 {#if page === Login}
-<!--<Login bind:value={Chat_ID}/>-->
-  <Login {Chat_ID} handleClick={handleClick}/>
+  <Login bind:Chat_ID={Chat_ID} handleClickSubmitLogin={() => handleClickSubmitLoginParent()}/>
 {/if}
 
 {#if page === Home}

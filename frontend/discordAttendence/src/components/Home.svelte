@@ -11,7 +11,7 @@ export let discord_user;
 export let user_nickname;
 
 
-alert(Chat_ID);
+
 
 </script>
 

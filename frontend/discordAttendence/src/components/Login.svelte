@@ -4,28 +4,13 @@
   import Home from "./Home.svelte";
 
 
-  export let Chat_ID = 3;
-  export let handleClick;
+  export let Chat_ID;
+  export let handleClickSubmitLogin = (Chat_ID) => {};
 
   let listOfChat_IDs = [];
 
   const controller = new AbortController();
   const signal = controller.signal;
-
-  /*
-  async function handleClick(){
-
-    alert(Chat_ID);
-
-    const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
-
-    if(exists){
-      window.location.href = "./Home.svelte"
-    }
-  }*/
-
-  alert(Chat_ID);
-
 
 </script>
 
@@ -38,8 +23,7 @@
   
   <div id="Login" class="user">
     <input id="chat_id" class="input" bind:value={Chat_ID} />
-    <!--<button class="button" type="submit" onsubmit="return false" on:click={handleClick}>Submit</button>-->
-    <button class="button" type="submit" onsubmit="return false" on:click={() => handleClick(Chat_ID)}>Submit</button>
+    <button class="button" type="submit" onsubmit="return false" on:click={() => handleClickSubmitLogin(Chat_ID)}>Submit</button>
   </div>
 
 </body>
