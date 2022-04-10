@@ -1,13 +1,21 @@
 <script>
-  import { onMount } from "svelte"
+  import App from '../App.svelte';
+  import { onMount } from "svelte";
+  import Home from "./Home.svelte";
 
-  let Chat_ID = 3;
+
+  export let Chat_ID = 3;
+  export let handleClick;
+
   let listOfChat_IDs = [];
-  
+
   const controller = new AbortController();
   const signal = controller.signal;
 
+  /*
   async function handleClick(){
+
+    alert(Chat_ID);
 
     const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
 
@@ -22,20 +30,26 @@
     if(exists){
       window.location.href = "./Home.svelte"
     }
-  }
-  
+  }*/
+
+  alert(Chat_ID);
+
+
 </script>
 
 <body class="bild">
-  <h1><b>Please enter your Chat-ID:</b></h1>
+  <h1><b>Please enter your Chat-ID: </b></h1>
   <p>
     Contact our <a href="https://t.me/discordattendancenotificationbot">Telegram-Bot</a> to get your Chat-ID.
   </p>
 
+  
   <div id="Login" class="user">
-    <input class="input" bind:value={Chat_ID} />
-    <button class="button" type="submit" onsubmit="return false" on:click={handleClick}>Submit</button>
+    <input id="chat_id" class="input" bind:value={Chat_ID} />
+    <!--<button class="button" type="submit" onsubmit="return false" on:click={handleClick}>Submit</button>-->
+    <button class="button" type="submit" onsubmit="return false" on:click={() => handleClick(Chat_ID)}>Submit</button>
   </div>
+
 </body>
   
 <style>
