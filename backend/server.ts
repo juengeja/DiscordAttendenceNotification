@@ -76,7 +76,7 @@ app.get("/api/v1/persistence/post/guild/:guild", function (req: any, res: any) {
 
 app.post("/test", function (req: any, res: any) {
     console.log(req)
-    res.send("Hello there!")
+    res.send("Hello there! --> General Kenobi")
 })
 
 app.listen(
