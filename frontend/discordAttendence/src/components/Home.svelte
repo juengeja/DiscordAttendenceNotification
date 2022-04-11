@@ -30,6 +30,10 @@ let tableData = [
         {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
         {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
         {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"},
+        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
         {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"}
        ]
 
@@ -181,6 +185,7 @@ p {
 
 .body2 {
   background-image: linear-gradient(to right, rgb(6, 6, 22) ,rgb(20, 21, 66) , rgb(50, 25, 95), rgb(48, 23, 94), rgb(77, 11, 68), rgb(63, 29, 58), rgb(27, 2, 23));
+  height: 100%;
 } 
 
 .button1 {

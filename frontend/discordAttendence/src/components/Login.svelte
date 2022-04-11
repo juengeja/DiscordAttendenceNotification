@@ -38,17 +38,17 @@
 </script>
 
 <body class="bild">
+  
   <h1><b>Please enter your Chat-ID: </b></h1>
-  <p>
-    Contact our <a href="https://t.me/discordattendancenotificationbot">Telegram-Bot</a> to get your Chat-ID.
-  </p>
-
   
   <div id="Login" class="user">
     <input id="chat_id" class="input" bind:value={Chat_ID} />
     <button class="button" type="submit" onsubmit="return false" on:click={() => handleClickSubmitLogin(Chat_ID)}>Submit</button>
   </div>
-
+  
+  <p>
+    Contact our <a href="https://t.me/discordattendancenotificationbot">Telegram-Bot</a> to get your Chat-ID.
+  </p>
 </body>
   
 <style>
@@ -56,6 +56,7 @@
     color: white;
     font-size: 5em;
     font-weight: 200;
+    margin-bottom: 4.4%;
   }
 
   p {
@@ -84,7 +85,7 @@
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: transparent;
-  color: white;
+  color: rgb(245, 117, 243);
   border: none;
   text-transform: uppercase;
   font-weight: 500;
@@ -97,9 +98,9 @@
   }
 .user {
   font-size: 1.1rem !important;
-  padding: 0.8rem 1rem !important;
+  padding: 0.6rem 1rem !important;
   position: relative;
-  background: rgba(168, 31, 161, 0.5);
+  background: rgba(255, 255, 255, 0.185);
   border: 1px solid rgba(104, 12, 92, 0.4);
   border-bottom-color: rgba(168, 44, 158, 0.5);
   box-shadow: 0 5px 12px -2px rgba(0, 0, 0, 0.3);
@@ -108,9 +109,10 @@
   color: #cfd9e6;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  background-color: transparent;
+  /*background-color: transparent;*/
   margin-left: 39%;
   border-radius: 150px;
+  margin-bottom: 32%;
 }
 .user:hover {
     box-shadow: 0 10px 30px -2px rgba(0, 0, 0, 0.3);
