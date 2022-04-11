@@ -35,6 +35,7 @@
 {#if page === Home}
 <!---->
 <Home {Chat_ID}/>
+<!--<Table/>-->
 {/if}
 
 <style>

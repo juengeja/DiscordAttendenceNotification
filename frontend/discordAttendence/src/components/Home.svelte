@@ -1,4 +1,5 @@
 <script>
+
 import App from '../App.svelte';
 import Login from './Login.svelte';
 export let Chat_ID;
@@ -10,8 +11,41 @@ export let channel_nickname;
 export let discord_user;
 export let user_nickname;
 
+/*
+async function createTable () {
+  let table= '';
+  let rows = 2;
+  let cols = 3;
+  for(let i = 0; i < rows; r++){
+    table += '<tr>';
+      for(let j = 1; j <= cols; j++){
+        table += '<td>' + j + '</td>';
+      }
+    table += '</tr>';
+}
+document.write('<table color:white>' + table + '</table>')
+}*/
 
+let tableData = [
+        {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
+        {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
+        {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"},
+        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"}
+       ]
 
+let entry = document.getElementsByName("entry");
+
+function addTableRow() {
+  let type = "TEST";
+
+  let tabelle = document.getElementById("tabelle");
+
+  let newRow = tabelle.insertAdjacentHTML(1,type);
+  let cell1 = newRow.insertAdjacentHTML(0,"Test");
+  let cell2 = newRow.insertAdjacentHTML(1,"asdasdad");
+
+  cell1.innerHTML = type;
+}
 
 </script>
 
@@ -29,7 +63,8 @@ export let user_nickname;
   <div class="grid-item"><input id="specific_channel" tpye="text" name="specific_channel" value="" placeholder="channel-id"></div>
   <div class="grid-item"><input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname"></div>
   <div class="grid-item"><label for="discord_user">discord user:</label></div>
-  <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required></div>
+  <!--<div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required></div>-->
+  <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id"></div>
   <div class="grid-item"><input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname"></div>
 </div>
 
@@ -39,11 +74,99 @@ export let user_nickname;
   <button class="button2" type="reset">Reset</button>
 </div>
 
+<!--
+  <button class="button2" name="entry" on:click={() => addTableRow()}>Anzeigen</button>
+<table class="tabelle" id="tabelle" border="1">
+  <thead>
+    <tr>
+      <th class="th1">Type</th>
+      <th class="th2">Name</th>
+      <th class="th3">Nickname</th>
+      <th class="th4">button</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+-->
+
+
+<div class="tabellendiv">
+  <table>
+  <thead>
+    <tr>
+        {#each Object.keys(tableData[0]) as columnHeading}
+        <th>{columnHeading}</th>
+      {/each}
+    </tr>
+  </thead>
+  <tbody>
+    {#each Object.values(tableData) as row}
+    <tr>
+      {#each Object.values(row) as cell}
+        <td>{cell}</td>
+      {/each}
+    </tr>
+  {/each}
+  </tbody>
+</table>
+</div>
+
+
+
+
 </form>
 </body>
 
 
 <style>
+
+table {
+      border: 3px solid;
+      border-color:rgb(180, 72, 159);
+      margin-top: 8%;
+      margin-left: 8px;
+      color: white;
+      width: 100%;
+      /*padding: 2px;*/
+      margin-bottom: 1%;
+      border-collapse:collapse;
+    }
+
+    th{
+      border: 3px solid;
+      border-collapse: collapse;
+      border-color:rgb(180, 72, 159);
+      color: aqua;
+      padding: 5px;
+
+    }
+
+    td {
+      border: 3px solid;
+      border-collapse: collapse;
+      border-color:rgb(180, 72, 159);
+      color: white;
+      padding: 5px;
+
+    }
+
+
+.tabellendiv {
+  padding-left: 5%;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 100px;
+  padding-bottom: 4vh;
+}
+  .tabelle {
+    color:white;
+    width: 100%;
+    margin-top: 5%;
+    border-color: aqua;
+    background-color: black;
+  }
 p {
   color:white;
   font-style: italic;
@@ -112,6 +235,7 @@ label {
   background-color: transparent;
   border-radius: 100px;
   box-shadow: 0 5px 80px 70px rgba(99, 59, 117, 0.3);
+  padding-bottom: 1vh;
 }
 
 .buttons{

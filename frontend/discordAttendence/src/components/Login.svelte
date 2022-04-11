@@ -32,7 +32,7 @@
     }
   }*/
 
-  alert(Chat_ID);
+  //alert(Chat_ID);
 
 
 </script>
