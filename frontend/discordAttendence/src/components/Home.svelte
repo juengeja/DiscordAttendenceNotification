@@ -2,7 +2,9 @@
 
 import App from '../App.svelte';
 import Login from './Login.svelte';
-export let Chat_ID;
+import { getContext } from "svelte";
+
+let Chat_ID = getContext('ChatID');
 
 export let discord_server;
 export let server_nickname;

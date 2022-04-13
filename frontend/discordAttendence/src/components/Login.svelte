@@ -2,39 +2,16 @@
   import App from '../App.svelte';
   import { onMount } from "svelte";
   import Home from "./Home.svelte";
-
+  import { setContext, getContext } from "svelte";
 
   export let Chat_ID;
+
   export let handleClickSubmitLogin = (Chat_ID) => {};
 
   let listOfChat_IDs = [];
 
   const controller = new AbortController();
   const signal = controller.signal;
-
-  /*
-  async function handleClick(){
-
-    alert(Chat_ID);
-
-    const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
-
-    const guild = {
-      guildID: 123456789,
-      chatID: 987654321,
-      name: "example"
-    }
-
-    alert(await fetch(`http://localhost:8800/test`, {signal: signal, method: "POST", body: JSON.stringify({guild})}))
-  
-    if(exists){
-      window.location.href = "./Home.svelte"
-    }
-  }*/
-
-  //alert(Chat_ID);
-
-
 </script>
 
 <body class="bild">
@@ -82,10 +59,10 @@
   }
 
   .button {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.621);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: transparent;
-  color: rgb(245, 117, 243);
+  /*background-color: transparent;*/
+  color: rgb(52, 17, 255);
   border: none;
   text-transform: uppercase;
   font-weight: 500;

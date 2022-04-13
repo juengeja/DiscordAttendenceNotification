@@ -2,19 +2,28 @@
   import router from '../node_modules/page/page.mjs';
   import Login from "@/components/Login.svelte";
   import Home from "@/components/Home.svelte";
+  import { onMount } from "svelte";
+  import { setContext, getContext } from "svelte";
+  import { writable } from "svelte/store";
 
   let page;
   let params;
   let Chat_ID;
+  /*let writableStore = writable(Chat_ID);
 
+  setContext('ChatID', Chat_ID);*/
+  
+  const controller = new AbortController();
+  const signal = controller.signal;
+  
   async function handleClickSubmitLoginParent(){
     
-    alert(Chat_ID);
-
-    const exists = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
-
-    if(exists){
-    window.location.href = "./Home.svelte"
+    const response = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${Chat_ID}`, {signal: signal, method: "GET"})
+    
+    const exists = await response.text()
+    
+    if(exists === `true`){
+      window.location.href = "./Home.svelte"
     }
   }
 
@@ -25,7 +34,6 @@
   }, () => page = Home);
 
   router.start();
-  
 </script>
 
 {#if page === Login}
@@ -34,7 +42,7 @@
 
 {#if page === Home}
 <!---->
-<Home {Chat_ID}/>
+<Home bind:Chat_ID = {Chat_ID}/>
 <!--<Table/>-->
 {/if}
 
