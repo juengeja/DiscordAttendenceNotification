@@ -31,11 +31,14 @@ let tableData = [
         {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
         {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"},
         {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"}
-       ]
+        {Number:5, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:6, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:8, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:9, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:10, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
+        {Number:11, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},       
+        {Number:12, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"}
+]
 
 let entry = document.getElementsByName("entry");
 

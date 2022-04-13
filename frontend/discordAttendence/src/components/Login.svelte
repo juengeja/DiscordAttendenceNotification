@@ -56,7 +56,7 @@
     color: white;
     font-size: 5em;
     font-weight: 200;
-    margin-bottom: 4.4%;
+    margin-bottom: 4.5%;
   }
 
   p {
@@ -109,7 +109,7 @@
   color: #cfd9e6;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  /*background-color: transparent;*/
+  background-color: transparent;
   margin-left: 39%;
   border-radius: 150px;
   margin-bottom: 32%;
