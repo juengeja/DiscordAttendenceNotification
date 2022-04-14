@@ -1,10 +1,6 @@
 import { Database } from "https://deno.land/x/aloedb@0.9.0/mod.ts";
-export { insertChat, insertChannel, insertGuild, insertUser };
-export { findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByChatID };
-export { findManyChannelByID, findManyGuildByID, findManyUserByID };
-export { deleteChannel, deleteUser, deleteGuild };
-export { deleteChannelsByID, deleteUsersByID, deleteGuildsByID };
 import dir from "https://deno.land/x/dir@v1.2.0/mod.ts";
+export { insertChat, insertChannel, insertGuild, insertUser, findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID, deleteChannel, deleteUser, deleteGuild, deleteChannelsByID, deleteUsersByID, deleteGuildsByID };
 
 let dbDirectory = dir("home");
 if(dbDirectory === null){

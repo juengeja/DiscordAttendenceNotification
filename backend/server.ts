@@ -1,8 +1,5 @@
 import { json, opine } from "https://deno.land/x/opine@2.1.5/mod.ts";
-import { findChatByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID } from "./aloedb.ts";
-import { insertChannel, insertGuild, insertUser } from "./aloedb.ts";
-import { deleteChannel, deleteUser, deleteGuild } from "./aloedb.ts";
-import { deleteChannelsByID, deleteGuildsByID, deleteUsersByID } from "./aloedb.ts";
+import { findChatByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID, insertChannel, insertGuild, insertUser, deleteChannel, deleteUser, deleteGuild, deleteChannelsByID, deleteGuildsByID, deleteUsersByID } from "./aloedb.ts";
 
 const app = opine();
 
