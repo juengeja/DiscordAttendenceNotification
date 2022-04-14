@@ -1,7 +1,9 @@
-import { Database } from 'https://deno.land/x/aloedb/mod.ts';
+import { Database } from "https://deno.land/x/aloedb@0.9.0/mod.ts";
 export { insertChat, insertChannel, insertGuild, insertUser };
 export { findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByChatID };
 export { findManyChannelByID, findManyGuildByID, findManyUserByID };
+export { deleteChannel, deleteUser, deleteGuild };
+export { deleteChannelsByID, deleteUsersByID, deleteGuildsByID };
 
 interface Chat {
     chatID: number
@@ -78,4 +80,28 @@ function findManyUserByID(chatID?: number, userID?: number): Promise<User[]> {
     if(chatID == undefined) return userDB.findMany({userID:userID});
     if(userID == undefined) return userDB.findMany({chatID:chatID})
     return userDB.findMany({chatID:chatID, userID:userID})
+}
+
+function deleteChannel(channel: Channel): void {
+    channelDB.deleteOne(channel);
+}
+
+function deleteUser(user: User): void {
+    userDB.deleteOne(user);
+}
+
+function deleteGuild(guild: Guild): void {
+    guildDB.deleteOne(guild);
+}
+
+function deleteChannelsByID(chatID: number): void {
+    channelDB.deleteMany({chatID:chatID})
+}
+
+function deleteUsersByID(chatID: number): void {
+    userDB.deleteMany({chatID:chatID})
+}
+
+function deleteGuildsByID(chatID: number): void {
+    guildDB.deleteMany({chatID:chatID})
 }
