@@ -17,7 +17,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build
-        working-directory: ./frontend/discordAttendence # <- delete property or modify path if necessary
+        working-directory: ./frontend/discordAttendence/ # <- delete property or modify path if necessary
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: site
-          path: ./frontend/discordAttendence/dist # <- modify to your path
+          path: ./frontend/discordAttendence/dist/ # <- modify to your path
 
   deploy:
     needs: [build]
