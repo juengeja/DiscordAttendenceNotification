@@ -4,6 +4,14 @@ export { findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByCha
 export { findManyChannelByID, findManyGuildByID, findManyUserByID };
 export { deleteChannel, deleteUser, deleteGuild };
 export { deleteChannelsByID, deleteUsersByID, deleteGuildsByID };
+import dir from "https://deno.land/x/dir@v1.2.0/mod.ts";
+
+let dbDirectory = dir("home");
+if(dbDirectory === null){
+    dbDirectory = "./";
+} else {
+    dbDirectory = dbDirectory.concat("/DiscordAttendanceDB/")
+}
 
 interface Chat {
     chatID: number
@@ -27,10 +35,10 @@ interface User {
     name: string
 }
 
-const chatDB = new Database<Chat>({path:"./Chat.json", autosave:true});
-const channelDB = new Database<Channel>({path:"./Channel.json", autosave:true});
-const guildDB = new Database<Guild>({path:"./Guild.json", autosave:true});
-const userDB = new Database<User>({path:"./User.json", autosave:true});
+const chatDB = new Database<Chat>({path:dbDirectory.concat("Chat.json"), autosave:true});
+const channelDB = new Database<Channel>({path:dbDirectory.concat("Channel.json"), autosave:true});
+const guildDB = new Database<Guild>({path:dbDirectory.concat("Guild.json"), autosave:true});
+const userDB = new Database<User>({path:dbDirectory.concat("User.json"), autosave:true});
 
 function insertChat(chat: Chat){
     chatDB.insertOne(chat)
