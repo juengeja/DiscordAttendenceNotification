@@ -1,17 +1,7 @@
 <script>
-  import App from '../App.svelte';
-  import { onMount } from "svelte";
-  import Home from "./Home.svelte";
-  import { setContext, getContext } from "svelte";
+  export let chatID;
 
-  export let Chat_ID;
-
-  export let handleClickSubmitLogin = (Chat_ID) => {};
-
-  let listOfChat_IDs = [];
-
-  const controller = new AbortController();
-  const signal = controller.signal;
+  export let handleClickSubmitLogin = () => {};
 </script>
 
 <body class="bild">
@@ -19,8 +9,8 @@
   <h1><b>Please enter your Chat-ID: </b></h1>
   
   <div id="Login" class="user">
-    <input id="chat_id" class="input" bind:value={Chat_ID} />
-    <button class="button" type="submit" onsubmit="return false" on:click={() => handleClickSubmitLogin(Chat_ID)}>Submit</button>
+    <input id="chat_id" class="input" bind:value={chatID} />
+    <button class="button" type="submit" onsubmit="return false" on:click={() => handleClickSubmitLogin()}>Submit</button>
   </div>
   
   <p>

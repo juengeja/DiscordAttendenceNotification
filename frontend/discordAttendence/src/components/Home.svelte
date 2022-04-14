@@ -1,45 +1,19 @@
 <script>
 
-import App from '../App.svelte';
-import Login from './Login.svelte';
-import { getContext } from "svelte";
+ export let chatID;
 
-let Chat_ID = getContext('ChatID');
 
-export let discord_server;
+/*export let discord_server;
 export let server_nickname;
 export let specific_channel;
 export let channel_nickname;
 export let discord_user;
-export let user_nickname;
-
-/*
-async function createTable () {
-  let table= '';
-  let rows = 2;
-  let cols = 3;
-  for(let i = 0; i < rows; r++){
-    table += '<tr>';
-      for(let j = 1; j <= cols; j++){
-        table += '<td>' + j + '</td>';
-      }
-    table += '</tr>';
-}
-document.write('<table color:white>' + table + '</table>')
-}*/
+export let user_nickname;*/
 
 let tableData = [
         {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
         {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
-        {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"},
-        {Number:4, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:5, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:6, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:8, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:9, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:10, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},
-        {Number:11, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"},       
-        {Number:12, Type: "Discord-Channel", Name: "12312313213", Nickname: "Günther"}
+        {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"}
 ]
 
 let entry = document.getElementsByName("entry");
@@ -62,7 +36,7 @@ function addTableRow() {
 <h1><b>Add to List of Notifications for: </b></h1>
 
 <form class="formular">
-  <p>Logged in with Chat-ID: <b class="b">{Chat_ID}</b></p>
+  <p>Logged in with Chat-ID: <b class="b"> {chatID}</b></p>
 
 <div class="grid-container">
   <div class="grid-item"><label for="discord_server">discord server:</label></div>
@@ -72,7 +46,6 @@ function addTableRow() {
   <div class="grid-item"><input id="specific_channel" tpye="text" name="specific_channel" value="" placeholder="channel-id"></div>
   <div class="grid-item"><input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname"></div>
   <div class="grid-item"><label for="discord_user">discord user:</label></div>
-  <!--<div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id" required></div>-->
   <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id"></div>
   <div class="grid-item"><input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname"></div>
 </div>
@@ -82,24 +55,6 @@ function addTableRow() {
   <button class="button3">Update</button> 
   <button class="button2" type="reset">Reset</button>
 </div>
-
-<!--
-  <button class="button2" name="entry" on:click={() => addTableRow()}>Anzeigen</button>
-<table class="tabelle" id="tabelle" border="1">
-  <thead>
-    <tr>
-      <th class="th1">Type</th>
-      <th class="th2">Name</th>
-      <th class="th3">Nickname</th>
-      <th class="th4">button</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-  </tbody>
-</table>
--->
-
 
 <div class="tabellendiv">
   <table>
@@ -121,13 +76,8 @@ function addTableRow() {
   </tbody>
 </table>
 </div>
-
-
-
-
 </form>
 </body>
-
 
 <style>
 
@@ -138,7 +88,6 @@ table {
       margin-left: 8px;
       color: white;
       width: 100%;
-      /*padding: 2px;*/
       margin-bottom: 1%;
       border-collapse:collapse;
     }
@@ -191,6 +140,7 @@ p {
 .body2 {
   background-image: linear-gradient(to right, rgb(6, 6, 22) ,rgb(20, 21, 66) , rgb(50, 25, 95), rgb(48, 23, 94), rgb(77, 11, 68), rgb(63, 29, 58), rgb(27, 2, 23));
   height: 100%;
+  min-height: 99vh;
 } 
 
 .button1 {
