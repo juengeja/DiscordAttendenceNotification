@@ -1,13 +1,5 @@
 import { Database } from "https://deno.land/x/aloedb@0.9.0/mod.ts";
-import dir from "https://deno.land/x/dir@v1.2.0/mod.ts";
 export { insertChat, insertChannel, insertGuild, insertUser, findChatByChatID, findChannelByChatID, findGuildByChatID, findUserByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID, deleteChannel, deleteUser, deleteGuild, deleteChannelsByID, deleteUsersByID, deleteGuildsByID };
-
-let dbDirectory = dir("home");
-if(dbDirectory === null){
-    dbDirectory = "./";
-} else {
-    dbDirectory = dbDirectory.concat("/DiscordAttendanceDB/")
-}
 
 interface Chat {
     chatID: number
@@ -31,10 +23,10 @@ interface User {
     name: string
 }
 
-const chatDB = new Database<Chat>({path:dbDirectory.concat("Chat.json"), autosave:true});
-const channelDB = new Database<Channel>({path:dbDirectory.concat("Channel.json"), autosave:true});
-const guildDB = new Database<Guild>({path:dbDirectory.concat("Guild.json"), autosave:true});
-const userDB = new Database<User>({path:dbDirectory.concat("User.json"), autosave:true});
+const chatDB = new Database<Chat>({path:`${Deno.cwd()}/backend/DatabaseFiles/Chat.json`, autosave:true});
+const channelDB = new Database<Channel>({path:`${Deno.cwd()}/backend/DatabaseFiles/Channel.json`, autosave:true});
+const guildDB = new Database<Guild>({path:`${Deno.cwd()}/backend/DatabaseFiles/Guild.json`, autosave:true});
+const userDB = new Database<User>({path:`${Deno.cwd()}/backend/DatabaseFiles/User.json`, autosave:true});
 
 function insertChat(chat: Chat){
     chatDB.insertOne(chat)
