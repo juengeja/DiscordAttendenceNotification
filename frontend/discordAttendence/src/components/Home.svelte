@@ -1,35 +1,92 @@
 <script>
+  const controller = new AbortController();
+  const signal = controller.signal;
 
- export let chatID;
+  export let chatID;
+  let channelTableData = [];
+  let userTableData = [];
+  let guildTableData = [];
 
+  /*export let discord_server;
+  export let server_nickname;
+  export let specific_channel;
+  export let channel_nickname;
+  export let discord_user;
+  export let user_nickname;*/
 
-/*export let discord_server;
-export let server_nickname;
-export let specific_channel;
-export let channel_nickname;
-export let discord_user;
-export let user_nickname;*/
+  let tableData = [
+    {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
+    {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
+    {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"}
+  ]
 
-let tableData = [
-        {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
-        {Number:2, Type: "User-Name", Name: "123131232342", Nickname: "Peter"},
-        {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"}
-]
+  let entry = document.getElementsByName("entry");
 
-let entry = document.getElementsByName("entry");
+  function addTableRow() {
+    let type = "TEST";
 
-function addTableRow() {
-  let type = "TEST";
+    let tabelle = document.getElementById("tabelle");
 
-  let tabelle = document.getElementById("tabelle");
+    let newRow = tabelle.insertAdjacentHTML(1,type);
+    let cell1 = newRow.insertAdjacentHTML(0,"Test");
+    let cell2 = newRow.insertAdjacentHTML(1,"asdasdad");
 
-  let newRow = tabelle.insertAdjacentHTML(1,type);
-  let cell1 = newRow.insertAdjacentHTML(0,"Test");
-  let cell2 = newRow.insertAdjacentHTML(1,"asdasdad");
+    cell1.innerHTML = type;
+  }
+  async function loadUserData() {
+    const channelResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
+    channelTableData = await channelResponse.json();
 
-  cell1.innerHTML = type;
-}
+    const userResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/userByID/${chatID}`, {signal: signal, method: "GET"});
+    userTableData = await userResponse.json();
 
+    const guildResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/guildByID/${chatID}`, {signal: signal, method: "GET"});
+    guildTableData = await guildResponse.json();
+  }
+  async function addUserData(addChannel, addUser, addGuild) {
+    if(addChannel.channelID !== undefined && addChannel.chatID !== undefined && addChannel.name !== undefined){
+      const addChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: addChannel});
+      const addChannelResponseJson = await addChannelResponse.json();
+      console.log(await addChannelResponseJson.status);
+    }
+    if(addUser.userID !== undefined && addUser.chatID !== undefined && addUser.name !== undefined){
+      const addUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: addUser});
+      const addUserResponseJson = await addUserResponse.json();
+      console.log(await addUserResponseJson.status);
+    }
+    if(addGuild.guildID !== undefined && addGuild.chatID !== undefined && addGuild.name !== undefined){
+      const addGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: addGuild});
+      const addGuildResponseJson = await addGuildResponse.json();
+      console.log(await addGuildResponseJson.status);
+    }
+    reload();
+  }
+  async function deleteUserData(deleteChannel, deleteUser, deleteGuild) {
+    if(deleteChannel.channelID !== undefined && deleteChannel.chatID !== undefined && deleteChannel.name !== undefined){
+      const deleteChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/channel/`, {signal: signal, method: "DELETE", body: deleteChannel});
+      const deleteChannelResponseJson = await deleteChannelResponse.json();
+      console.log(await deleteChannelResponseJson.status);
+    }
+    if(deleteUser.userID !== undefined && deleteUser.chatID !== undefined && deleteUser.name !== undefined){
+      const deleteUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/user/`, {signal: signal, method: "DELETE", body: deleteUser});
+      const deleteUserResponseJson = await deleteUserResponse.json();
+      console.log(await deleteUserResponseJson.status);
+    }
+    if(deleteGuild.guildID !== undefined && deleteGuild.chatID !== undefined && deleteGuild.name !== undefined){
+      const deleteGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/guild/`, {signal: signal, method: "DELETE", body: deleteGuild});
+      const deleteGuildResponseJson = await deleteGuildResponse.json();
+      console.log(await deleteGuildResponseJson.status);
+    }
+    reload();
+  }
+  async function reload(){
+    loadUserData();
+    buildTable();
+  }
+  async function buildTable(){
+
+  }
+  loadUserData()
 </script>
 
 <body class="body2">
