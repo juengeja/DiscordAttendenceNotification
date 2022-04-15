@@ -24,6 +24,9 @@
     - -> Aktuell genutzte Lösung
 - Middleware Frameworks
   - Opine kennengelernt und begeistert genutzt
+    - Nutzen von http-Methoden: POST, GET, DELETE
+    - Testen der API-Funktion mittels Postman
+  - Nutzung von .env files zum Schutz sensibler Daten (in Form von TOKEN)
   - Telegram Chatbot
     - Erster eigener Telegram Chatbot
     - Steuerung mittels gleichnamigem Deno-Modul
@@ -40,6 +43,8 @@
   - Verschiedene Methoden zum Weitergeben der Variablen zwischen Components ausprobiert
 - Dynamische Tabellen mit Button, um Zeile zu Laden und zu Löschen
   - Ausprobieren von JQuery und anderen Alternativen
+- Probleme beim Build & Deploy
+  - Trotz korrekter Ausführung Generierung einer leeren Seite
 
 ## Spezielle Learnings
 
