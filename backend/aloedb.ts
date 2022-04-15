@@ -23,10 +23,10 @@ interface User {
     name: string
 }
 
-const chatDB = new Database<Chat>({path:`${Deno.cwd()}/backend/DatabaseFiles/Chat.json`, autosave:true});
-const channelDB = new Database<Channel>({path:`${Deno.cwd()}/backend/DatabaseFiles/Channel.json`, autosave:true});
-const guildDB = new Database<Guild>({path:`${Deno.cwd()}/backend/DatabaseFiles/Guild.json`, autosave:true});
-const userDB = new Database<User>({path:`${Deno.cwd()}/backend/DatabaseFiles/User.json`, autosave:true});
+const chatDB = new Database<Chat>({path:`./DatabaseFiles/Chat.json`, autosave:true});
+const channelDB = new Database<Channel>({path:`./backend/DatabaseFiles/Channel.json`, autosave:true});
+const guildDB = new Database<Guild>({path:`./backend/DatabaseFiles/Guild.json`, autosave:true});
+const userDB = new Database<User>({path:`./backend/DatabaseFiles/User.json`, autosave:true});
 
 function insertChat(chat: Chat){
     chatDB.insertOne(chat)

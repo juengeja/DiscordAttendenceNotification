@@ -10,13 +10,13 @@
   
   async function handleClickSubmitLoginParent(){
     
-    /*const response = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${chatID}`, {signal: signal, method: "GET"})
+    const response = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${chatID}`, {signal: signal, method: "GET"})
     
-    const exists = await response.text()
-    
-    if(exists === `true`){
-    }*/
-    page = "Home";
+    if(response.body.exists === true){
+      page = "Home";
+    }else{
+      alert(`Chat-ID '${chatID}' is not registered. Please contact our Telegram-Bot!`)
+    }
   }
 </script>
 
