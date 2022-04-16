@@ -17,7 +17,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build
-        working-directory: ./frontend/discordAttendence/ # <- delete property or modify path if necessary
+        working-directory: ./frontend/discordAttendence/
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: site
-          path: ./frontend/discordAttendence/dist/ # <- modify to your path
+          path: ./frontend/discordAttendence/dist/
 
   deploy:
     needs: [build]
@@ -42,6 +42,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          branch: deploy # <- modify to wanted branch
-          folder: "site"# This is a basic workflow to help you get started with Actions
+          branch: deploy
+          folder: site
