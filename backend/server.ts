@@ -10,6 +10,21 @@ app.get("/", function (_req: any, res: any) {
 });
 
 // deno-lint-ignore no-explicit-any
+app.get("/bc8a8be16f74d68f84183c5dd4fb311be7b0eb1500bd3a9270532f5aa1007319.js", function (_req: any, res: any) {
+    res.sendFile(`${Deno.cwd()}/frontend/discordAttendence/dist/bc8a8be16f74d68f84183c5dd4fb311be7b0eb1500bd3a9270532f5aa1007319.js`);
+});
+
+// deno-lint-ignore no-explicit-any
+app.get("/83b0a281833f5bd0c7fdc6f54ee9c7f9317a0f25843319c3d5012becd41a2c47.css", function (_req: any, res: any) {
+    res.sendFile(`${Deno.cwd()}/frontend/discordAttendence/dist/83b0a281833f5bd0c7fdc6f54ee9c7f9317a0f25843319c3d5012becd41a2c47.css`);
+});
+
+// deno-lint-ignore no-explicit-any
+app.get("/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png", function (_req: any, res: any) {
+    res.sendFile(`${Deno.cwd()}/frontend/discordAttendence/dist/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png`);
+});
+
+// deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/chatId/:chatID", async function (req: any, res: any) {
     const chatID = await findChatByChatID(parseInt(req.params.chatID))
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')

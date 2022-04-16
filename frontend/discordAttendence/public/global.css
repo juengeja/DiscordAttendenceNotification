@@ -30,7 +30,6 @@ a:visited {
   color: rgb(0, 80, 160);
 }
 
-
 input,
 select,
 textarea {
@@ -44,11 +43,9 @@ textarea {
   border-radius: 2px;
 }
 
-
 input:disabled {
   color: #ccc;
 }
-
 
 button {
   text-align: center;
@@ -73,13 +70,3 @@ button:not(:disabled):active {
 button:focus {
   border-color: #666;
 }
-
-
-
-
-
-
-
-
-
-
