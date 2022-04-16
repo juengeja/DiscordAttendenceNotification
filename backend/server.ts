@@ -2,7 +2,7 @@ import { json, opine } from "https://deno.land/x/opine@2.1.5/mod.ts";
 import { findChatByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID, insertChannel, insertGuild, insertUser, deleteChannel, deleteUser, deleteGuild, deleteChannelsByID, deleteGuildsByID, deleteUsersByID } from "./aloedb.ts";
 
 const app = opine();
-const pathToIndexHTMLFile = `${Deno.cwd()}/frontend/discordAttendence/dist/`
+const pathToIndexHTMLFile = `${Deno.cwd()}/frontend/discordAttendence/dist/index.html`
 
 // deno-lint-ignore no-explicit-any
 app.get("/", function (_req: any, res: any) {
