@@ -43,4 +43,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: deploy
-          folder: "site"
+          folder: site
