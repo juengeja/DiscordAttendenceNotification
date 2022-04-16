@@ -1,3 +1,5 @@
+
+
 <script>
   const controller = new AbortController();
   const signal = controller.signal;
@@ -35,29 +37,37 @@
     cell1.innerHTML = type;
   }*/
 
+  const tabellendiv = document.querySelector("tabellendiv");
 
-    let table = document.querySelector("table");
-    console.log(table);
+  function handleClick() {
+  //let btn4 = undefined;
+  let btn4 = document.querySelector(".button4")
+    //let btn = e.target
+    //btn.closest("tr").remove();
 
-  function handleDelete(e) {
-
-
-    //let btn = table.querySelector("button")
-    //console.log(btn)
-    if (!e.target.classList.contains("deleteBtn")) {
-          return;
-        }
-
-        const btn = e.target;
-        btn.closest("tr").remove();
-
-    //    btn.closest("tr").remove();
-
-
-  }  
-  if(table){
-  table.addEventListener("click", handleDelete);
+  btn4.addEventListener("click", handleDelete(btn4))
+  //btn4.addEventListener("click", function (e) {
+    //console.log(e.target.closest("tr"))
   }
+
+  
+  
+
+
+  function handleDelete(btn4) { 
+    let btn = btn4
+    const tr = btn4.closest("tr");
+    console.log(tr)
+    btn.closest("tr").remove();
+   }
+
+
+   //tabellendiv.addEventListener("click", function (e) {
+     //handleClick(e)
+     //alert("HI")
+   //} );
+  
+
 
   async function loadUserData() {
     const channelResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
@@ -140,7 +150,7 @@
 </div>
 
 <div class="tabellendiv">
-  <table>
+  <table class="table">
   <thead>
     <tr>
         {#each Object.keys(tableData[0]) as columnHeading}
@@ -154,7 +164,7 @@
       {#each Object.values(row) as cell}
         <td>{cell}</td>
       {/each}
-      <button class="button4" type="reset" on:click={() => handleDelete()}>Delete</button>
+      <button class="button4" type="reset" on:click={() => handleClick()}>Delete</button>
     </tr>
   {/each}
   </tbody>
