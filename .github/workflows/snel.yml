@@ -42,6 +42,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           branch: deploy # <- modify to wanted branch
           folder: "site"# This is a basic workflow to help you get started with Actions
