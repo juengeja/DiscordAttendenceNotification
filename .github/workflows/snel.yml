@@ -44,4 +44,4 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           branch: deploy # <- modify to wanted branch
-          folder: "site"# This is a basic workflow to help you get started with Actions
+          folder: "site" # This is a basic workflow to help you get started with Actions
