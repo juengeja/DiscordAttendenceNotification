@@ -22,6 +22,7 @@
 
   let entry = document.getElementsByName("entry");
 
+  /*
   function addTableRow() {
     let type = "TEST";
 
@@ -32,7 +33,32 @@
     let cell2 = newRow.insertAdjacentHTML(1,"asdasdad");
 
     cell1.innerHTML = type;
+  }*/
+
+
+    let table = document.querySelector("table");
+    console.log(table);
+
+  function handleDelete(e) {
+
+
+    //let btn = table.querySelector("button")
+    //console.log(btn)
+    if (!e.target.classList.contains("deleteBtn")) {
+          return;
+        }
+
+        const btn = e.target;
+        btn.closest("tr").remove();
+
+    //    btn.closest("tr").remove();
+
+
+  }  
+  if(table){
+  table.addEventListener("click", handleDelete);
   }
+
   async function loadUserData() {
     const channelResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
     channelTableData = await channelResponse.json();
@@ -128,6 +154,7 @@
       {#each Object.values(row) as cell}
         <td>{cell}</td>
       {/each}
+      <button class="button4" type="reset" on:click={() => handleDelete()}>Delete</button>
     </tr>
   {/each}
   </tbody>
@@ -220,6 +247,12 @@ p {
   background-color: transparent;
   background-image: linear-gradient(to right, rgb(45, 107, 71) ,rgb(66, 74, 165) , rgb(58, 67, 184), rgb(68, 61, 170), rgb(37, 65, 168), rgb(65, 46, 177), rgb(143, 66, 66));
   color: white
+}
+
+.button4 { 
+  color: rgb(255, 255, 255);
+  background: linear-gradient(to right, rgb(124, 45, 70) ,rgb(128, 23, 46) , rgb(128, 14, 33), rgb(110, 10, 10));
+  border-color: rgb(146, 23, 44);
 }
 
 h1 {

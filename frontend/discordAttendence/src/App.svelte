@@ -9,7 +9,7 @@
   const signal = controller.signal;
   
   async function handleClickSubmitLoginParent(){
-    
+    /*
     const response = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${chatID}`, {signal: signal, method: "GET"})
     const responseJson = await response.json();
     
@@ -17,7 +17,10 @@
       page = "Home";
     }else{
       alert(`Chat-ID '${chatID}' is not registered. Please contact our Telegram-Bot!`)
-    }
+    }*/
+
+    page = "Home";
+
   }
 </script>
 
