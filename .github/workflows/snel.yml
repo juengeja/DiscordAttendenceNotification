@@ -24,7 +24,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1
         with:
-          name: site
+          name: dist
           path: ./frontend/discordAttendence/dist/
 
   deploy:
