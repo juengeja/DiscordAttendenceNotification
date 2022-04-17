@@ -2,7 +2,10 @@ import { json, opine } from "https://deno.land/x/opine@2.1.5/mod.ts";
 import { findChatByChatID, findManyChannelByID, findManyGuildByID, findManyUserByID, insertChannel, insertGuild, insertUser, deleteChannel, deleteUser, deleteGuild, deleteChannelsByID, deleteGuildsByID, deleteUsersByID } from "./aloedb.ts";
 
 const app = opine();
-const pathToIndexHTMLFile = `./frontendprod/index.html`
+const pathToIndexHTMLFile = Deno.env.get("INDEX_HTML");
+const pathToGlobalCSS = Deno.env.get("GLOBAL_CSS");
+const pathToMainJS = Deno.env.get("MAIN_JS");
+const pathToFavicon = Deno.env.get("FAVICON");
 
 // deno-lint-ignore no-explicit-any
 app.get("/", function (_req: any, res: any) {
@@ -11,17 +14,17 @@ app.get("/", function (_req: any, res: any) {
 
 // deno-lint-ignore no-explicit-any
 app.get("/bc8a8be16f74d68f84183c5dd4fb311be7b0eb1500bd3a9270532f5aa1007319.js", function (_req: any, res: any) {
-    res.sendFile(`./frontendprod/bc8a8be16f74d68f84183c5dd4fb311be7b0eb1500bd3a9270532f5aa1007319.js`);
+    res.sendFile(pathToMainJS);
 });
 
 // deno-lint-ignore no-explicit-any
 app.get("/83b0a281833f5bd0c7fdc6f54ee9c7f9317a0f25843319c3d5012becd41a2c47.css", function (_req: any, res: any) {
-    res.sendFile(`./frontendprod/83b0a281833f5bd0c7fdc6f54ee9c7f9317a0f25843319c3d5012becd41a2c47.css`);
+    res.sendFile(pathToGlobalCSS);
 });
 
 // deno-lint-ignore no-explicit-any
 app.get("/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png", function (_req: any, res: any) {
-    res.sendFile(`./frontendprod/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png`);
+    res.sendFile(pathToFavicon);
 });
 
 // deno-lint-ignore no-explicit-any
