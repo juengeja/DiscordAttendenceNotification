@@ -3,6 +3,7 @@ import { findChatByChatID, findManyChannelByID, findManyGuildByID, findManyUserB
 
 const app = opine();
 const pathToIndexHTMLFile = `${Deno.cwd()}/frontend/discordAttendence/dist/`;
+console.log(pathToIndexHTMLFile)
 
 // deno-lint-ignore no-explicit-any
 app.get("/", function (_req: any, res: any) {
