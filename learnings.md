@@ -26,6 +26,7 @@
   - Opine kennengelernt und begeistert genutzt
     - Nutzen von http-Methoden: POST, GET, DELETE
     - Testen der API-Funktion mittels Postman
+  - Einarbeitung CORS-Header
   - Nutzung von .env files zum Schutz sensibler Daten (in Form von TOKEN)
   - Telegram Chatbot
     - Erster eigener Telegram Chatbot
@@ -45,6 +46,8 @@
   - Ausprobieren von JQuery und anderen Alternativen
 - Probleme beim Build & Deploy
   - Trotz korrekter Ausführung Generierung einer leeren Seite
+  - Lösung durch bereitstellen entsprechender css und js files unter zugehörigen Pfaden
+  - Bereitstellung mittels Opine (res.sendfile) auf eigenem Server
 
 ## Spezielle Learnings
 
