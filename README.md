@@ -6,8 +6,8 @@ Dieses Projekt ist im Rahmen der Vorlesungsreihe **"Web-Programmierung"** im Kur
 
 ## Nutzung
 
-Starte auf unserer Website: [Discord Attendance Notification](http://5.45.107.109:8800/)
-Schreibe unserem [Telegram-Bot](https://t.me/discordattendancenotificationbot) eine Nachricht, um eine ChatID zu erhalten und damit er dir Nachrichten senden kann!
+Starte auf unserer Website: [Discord Attendance Notification](http://5.45.107.109:8800/)  
+Schreibe unserem [Telegram-Bot](https://t.me/discordattendancenotificationbot) eine Nachricht, um eine ChatID zu erhalten und damit er dir Nachrichten senden kann!  
 Füge unseren [Discord-Bot](https://discord.com/api/oauth2/authorize?client_id=946429904260595712&permissions=8&scope=bot) zu deinem Discord-Server hinzu!
 
 Gib nun deine persönliche ChatID, die du von unserem Telegram-Bot erhalten hast, auf der Login-Page unserer Website ein.
@@ -29,6 +29,9 @@ Unter den Eingabefeldern wird dir eine Tabelle mit deinen ausgewählten Benachri
 ## Komponenten
 
 Unser Projekt setzt sich aus einem **Backend**, einem **Frontend** und den beiden **Bots** zusammen.
+
+Das Backend ist in der Deno-Umgebung entwickelt und besteht aus einem Telegram-Chatbot, einem Discordbot, einem Opine-Server und einer AloeDB-Datenbank.  
+Das Frontend besteht aus einer Svelte/Snel-Applikation, die mittels API-Anfragen über das http-Protokoll mit dem backend-server kommuniziert.
 
 ## Entwicklung
 
@@ -53,3 +56,9 @@ bzw.
 deno run --allow-all ./backend/discordbot.ts
 ```
 ebenfalls aus dem Hauptverzeichnis heraus gestartet.
+
+Um die Bots korrekt starten und steuern zu können, benötigt man deren Token. Diese Token müssen in einem .env-File im Hauptverzeichnis abgelegt werden. Die Datei wird **.env** genannt und hat folgenden Inhalt:
+```
+DISCORD_TOKEN=<yoursupersecrettokencomeshere>
+TELEGRAM_TOKEN=<yoursupersecrettokencomeshere>
+```
