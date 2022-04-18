@@ -1,5 +1,3 @@
-
-
 <script>
   const controller = new AbortController();
   const signal = controller.signal;
@@ -9,12 +7,12 @@
   let userTableData = [];
   let guildTableData = [];
 
-  /*export let discord_server;
-  export let server_nickname;
-  export let specific_channel;
-  export let channel_nickname;
-  export let discord_user;
-  export let user_nickname;*/
+  let discordServer = "";
+  let serverNickname = "";
+  let specificChannel = "";
+  let channelNickname = "";
+  let discordUser = "";
+  let userNickname = "";
 
   let tableData = [
     {Number:1, Type: "Discord-Channel", Name: "124324234445", Nickname: "Hans"},
@@ -50,10 +48,6 @@
     //console.log(e.target.closest("tr"))
   }
 
-  
-  
-
-
   function handleDelete(btn4) { 
     let btn = btn4
     const tr = btn4.closest("tr");
@@ -67,8 +61,6 @@
      //alert("HI")
    //} );
   
-
-
   async function loadUserData() {
     const channelResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
     channelTableData = await channelResponse.json();
@@ -79,19 +71,22 @@
     const guildResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/guildByID/${chatID}`, {signal: signal, method: "GET"});
     guildTableData = await guildResponse.json();
   }
-  async function addUserData(addChannel, addUser, addGuild) {
-    if(addChannel.channelID !== undefined && addChannel.chatID !== undefined && addChannel.name !== undefined){
-      const addChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: addChannel});
+  async function addUserData() {
+    if(!isNaN(specificChannel) && !isNaN(chatID)){
+      if(channelNickname === "") channelNickname = undefined;
+      const addChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: {"channelID":specificChannel, "chatID":chatID, "name":channelNickname}});
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
     }
-    if(addUser.userID !== undefined && addUser.chatID !== undefined && addUser.name !== undefined){
-      const addUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: addUser});
+    if(!isNaN(discordUser) && !isNaN(chatID)){
+      if(userNickname === "") userNickname = undefined;
+      const addUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: {"userID":discordUser, "chatID":chatID, "name":userNickname}});
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
     }
-    if(addGuild.guildID !== undefined && addGuild.chatID !== undefined && addGuild.name !== undefined){
-      const addGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: addGuild});
+    if(!isNaN(discordServer) && !isNaN(chatID)){
+      if(serverNickname === "") serverNickname = undefined;
+      const addGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: {"guildID":discordServer, "chatID":chatID, "name":serverNickname}});
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
     }
@@ -133,18 +128,18 @@
 
 <div class="grid-container">
   <div class="grid-item"><label for="discord_server">discord server:</label></div>
-  <div class="grid-item"><input class="l1" id="discord_server" type="text" name="discord_server" value="" placeholder="server-id"></div>  
-  <div class="grid-item"><input class="l1" id="server_nickname" type="text" name="server_nickname" value="" placeholder="server-nickname"></div>
+  <div class="grid-item"><input class="l1" id="discord_server" type="text" name="discord_server" bind:value={discordServer} placeholder="server-id"></div>  
+  <div class="grid-item"><input class="l1" id="server_nickname" type="text" name="server_nickname" bind:value={serverNickname} placeholder="server-nickname"></div>
   <div class="grid-item"><label for="specific_channel">specific channel:</label></div>
-  <div class="grid-item"><input id="specific_channel" tpye="text" name="specific_channel" value="" placeholder="channel-id"></div>
-  <div class="grid-item"><input id="channel" tpye="text" name="channel_nickname" value="" placeholder="channel-nickname"></div>
+  <div class="grid-item"><input id="specific_channel" tpye="text" name="specific_channel" bind:value={specificChannel} placeholder="channel-id"></div>
+  <div class="grid-item"><input id="channel" tpye="text" name="channel_nickname" bind:value={channelNickname} placeholder="channel-nickname"></div>
   <div class="grid-item"><label for="discord_user">discord user:</label></div>
-  <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" value="" placeholder="user-id"></div>
-  <div class="grid-item"><input id="user_nickname" tpye="text" name="user_nickname" value="" placeholder="user-nickname"></div>
+  <div class="grid-item"><input id="discord_user" tpye="text" name="discord_user" bind:value={discordUser} placeholder="user-id"></div>
+  <div class="grid-item"><input id="user_nickname" tpye="text" name="user_nickname" bind:value={userNickname} placeholder="user-nickname"></div>
 </div>
 
 <div class="buttons">
-  <button class="button1" type="submit">Submit</button>
+  <button class="button1" type="submit" on:click={() => addUserData()}>Submit</button>
   <button class="button3">Update</button> 
   <button class="button2" type="reset">Reset</button>
 </div>

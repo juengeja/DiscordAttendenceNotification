@@ -28,26 +28,26 @@ app.get("/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png",
 // deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/chatId/:chatID", async function (req: any, res: any) {
     const chatID = await findChatByChatID(parseInt(req.params.chatID))
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(chatID?.chatID) res.send({"exists": true})
     else res.send({"exists":false})
 });
 
 // deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/channelByID/:chatID", async function (req: any, res: any) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     res.send(await findManyChannelByID(parseInt(req.params.chatID)))
 })
 
 // deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/guildByID/:chatID", async function (req: any, res: any) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     res.send(await findManyGuildByID(parseInt(req.params.chatID)))
 })
 
 // deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/userByID/:chatID", async function (req: any, res: any) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     res.send(await findManyUserByID(parseInt(req.params.chatID)))
 })
 
@@ -56,7 +56,7 @@ app.use(json());
 // deno-lint-ignore no-explicit-any
 app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
     const newChannel = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(newChannel.channelID != undefined && newChannel.chatID != undefined){
         if(newChannel.name == "") newChannel.name = undefined
         insertChannel(newChannel)
@@ -69,7 +69,7 @@ app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
 // deno-lint-ignore no-explicit-any
 app.post("/api/v1/persistence/post/user/", function (req: any, res: any) {
     const newUser = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(newUser.userID != undefined && newUser.chatID != undefined){
         if(newUser.name == "") newUser.name = undefined
         insertUser(newUser)
@@ -82,7 +82,7 @@ app.post("/api/v1/persistence/post/user/", function (req: any, res: any) {
 // deno-lint-ignore no-explicit-any
 app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
     const newGuild = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(newGuild.userID != undefined && newGuild.chatID != undefined){
         if(newGuild.name == "") newGuild.name = undefined
         insertGuild(newGuild)
@@ -95,7 +95,7 @@ app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/delete/channel/", function (req: any, res: any) {
     const channel = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(channel.chatID != undefined && channel.channelID != undefined){
         deleteChannel(channel)
     }
@@ -105,7 +105,7 @@ app.delete("/api/v1/persistence/delete/channel/", function (req: any, res: any) 
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/delete/user/", function (req: any, res: any) {
     const user = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(user.chatID != undefined && user.userID != undefined){
         deleteUser(user)
     }
@@ -115,7 +115,7 @@ app.delete("/api/v1/persistence/delete/user/", function (req: any, res: any) {
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/delete/guild/", function (req: any, res: any) {
     const guild = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(guild.chatID != undefined && guild.guildID != undefined){
         deleteGuild(guild)
     }
@@ -125,7 +125,7 @@ app.delete("/api/v1/persistence/delete/guild/", function (req: any, res: any) {
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/deleteAll/channel/", function (req: any, res: any) {
     const channel = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(channel.chatID != undefined){
         deleteChannelsByID(parseInt(channel.chatID));
     }
@@ -135,7 +135,7 @@ app.delete("/api/v1/persistence/deleteAll/channel/", function (req: any, res: an
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/deleteAll/user/", function (req: any, res: any) {
     const user = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(user.chatID != undefined){
         deleteUsersByID(parseInt(user.chatID));
     }
@@ -145,7 +145,7 @@ app.delete("/api/v1/persistence/deleteAll/user/", function (req: any, res: any) 
 // deno-lint-ignore no-explicit-any
 app.delete("/api/v1/persistence/deleteAll/guild/", function (req: any, res: any) {
     const guild = req.parsedBody
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(guild.chatID != undefined){
         deleteGuildsByID(parseInt(guild.chatID));
     }
