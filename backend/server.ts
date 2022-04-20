@@ -54,11 +54,12 @@ app.get("/api/v1/persistence/get/userByID/:chatID", async function (req: any, re
 app.use(json());
 
 // deno-lint-ignore no-explicit-any
-app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
-    const newChannel = req.parsedBody
+app.post("/api/v1/persistence/post/channel/", async function (req: any, res: any) {
+    const newChannel = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newChannel.channelID !== undefined && newChannel.chatID !== undefined){
-        if(newChannel.name === "") newChannel.name = undefined
+    console.log(newChannel)
+    if(await newChannel.channelID !== undefined && await newChannel.chatID !== undefined){
+        if(await newChannel.name === "") newChannel.name = undefined
         insertChannel(newChannel)
         res.send({"status":"success"})
     }else{
@@ -67,11 +68,12 @@ app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
 });
 
 // deno-lint-ignore no-explicit-any
-app.post("/api/v1/persistence/post/user/", function (req: any, res: any) {
-    const newUser = req.parsedBody
+app.post("/api/v1/persistence/post/user/", async function (req: any, res: any) {
+    const newUser = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newUser.userID !== undefined && newUser.chatID !== undefined){
-        if(newUser.name === "") newUser.name = undefined
+    console.log(newUser)
+    if(await newUser.userID !== undefined && await newUser.chatID !== undefined){
+        if(await newUser.name === "") newUser.name = undefined
         insertUser(newUser)
         res.send({"status":"success"})
     }else{
