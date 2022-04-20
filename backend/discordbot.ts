@@ -18,7 +18,7 @@ client.connect(Token, [
 
 const guild = await client.guilds.resolve('886953289122467852');
 
-if(guild == undefined){
+if(guild === undefined){
     console.log('Keine guild!!')
 }else{
 
@@ -29,7 +29,7 @@ if(guild == undefined){
         if(content === "!Ping"){
             msg.reply('Pong');
         }
-        if (content == "!Presence") {
+        if (content === "!Presence") {
             // deno-lint-ignore prefer-const
             let authorPresence = await guild.presences.resolve(msg.author.id);
             msg.reply(`Your presence status: \`${authorPresence?.status}\``);
@@ -38,13 +38,13 @@ if(guild == undefined){
 }
 
 client.on("presenceUpdate", async (presenceUpdate: Presence) => {
-    if(presenceUpdate.status == 'online'){
+    if(presenceUpdate.status === 'online'){
         // deno-lint-ignore prefer-const
         let user = await findManyUserByID(undefined,parseInt(presenceUpdate.user.id))
-        if(user.length != 0){
+        if(user.length !== 0){
             user.forEach(element => {
                 let name;
-                if(element.name == undefined) name = presenceUpdate.user.username
+                if(element.name === undefined) name = presenceUpdate.user.username
                 else name = element.name
                 sendMessage(element.chatID, `The user _${name}_ is now *${presenceUpdate.status}*!`)
             });
@@ -55,31 +55,44 @@ client.on("presenceUpdate", async (presenceUpdate: Presence) => {
 client.on("voiceStateAdd", async (voiceStateUpdate: VoiceState) => {
     const channel = voiceStateUpdate.channel
     const user = voiceStateUpdate.user
+    const updateGuild = voiceStateUpdate.guild?.id
     
-    if(channel == null) return;
+    if(channel === null) return;
 
     const channelSubscribers = await findManyChannelByID(undefined, parseInt(channel.id))
     const userSubscribers = await findManyUserByID(undefined, parseInt(user.id))
+    // deno-lint-ignore no-explicit-any
+    let guildMuteSubscribers: any[];
+
+    if(updateGuild !== undefined){
+        guildMuteSubscribers = await findManyGuildByID(undefined, parseInt(updateGuild))
+    } else {
+        guildMuteSubscribers = []
+    }
     
     channelSubscribers.forEach(subscribedChannel => {
         let name;
         let isSubscribedUser;
+        let isMutedGuild;
         userSubscribers.forEach(subscribedUser => {
-            if(subscribedUser.userID == parseInt(user.id)) isSubscribedUser = true;
+            if(subscribedUser.userID === parseInt(user.id)) isSubscribedUser = true;
         });
-        if(!isSubscribedUser){
-            if(subscribedChannel.name == undefined) name = channel.name;
+        guildMuteSubscribers.forEach(mutedGuild => {
+            if(updateGuild !== undefined && mutedGuild.guildID === parseInt(updateGuild)) isMutedGuild = true;
+        });
+        if(!isSubscribedUser && !isMutedGuild){
+            if(subscribedChannel.name === undefined) name = channel.name;
             else name = subscribedChannel.name;
-            if (name != undefined && user.username != undefined) {
+            if (name !== undefined && user.username !== undefined) {
                 sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel _${name}_ that you subscribed to.`)
             }
-            if(name != undefined && user.username == undefined){
+            if(name !== undefined && user.username === undefined){
                 sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel _${name}_ that you subscribed to.`)
             }
-            if (name == undefined && user.username != undefined) {
+            if (name === undefined && user.username !== undefined) {
                 sendMessage(subscribedChannel.chatID, `The user _${user.username}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
             }
-            if(name == undefined && user.username == undefined){
+            if(name === undefined && user.username === undefined){
                 sendMessage(subscribedChannel.chatID, `The user with ID _${user.id}_ joined the voice channel with ID _${subscribedChannel.channelID}_ that you subscribed to.`)
             }
         }
@@ -87,19 +100,19 @@ client.on("voiceStateAdd", async (voiceStateUpdate: VoiceState) => {
 
     userSubscribers.forEach(subscribedUser => {
         let username;
-        if(subscribedUser.name == undefined){
+        if(subscribedUser.name === undefined){
             username = user.username;
         } else username = subscribedUser.name;
-        if(channel.name == undefined && username == undefined){
+        if(channel.name === undefined && username === undefined){
             sendMessage(subscribedUser.chatID, `The user with ID _${user.id}_ that you subscribed to joined the voice channel with ID _${channel.id}_.`)
         }
-        if(channel.name == undefined && username != undefined){
+        if(channel.name === undefined && username !== undefined){
             sendMessage(subscribedUser.chatID, `The user _${username}_ that you subscribed to joined the voice channel with ID _${channel.id}_.`)
         }
-        if(channel.name != undefined && username == undefined){
+        if(channel.name !== undefined && username === undefined){
             sendMessage(subscribedUser.chatID, `The user with ID _${user.id}_ that you subscribed to joined the voice channel _${channel.name}_.`)
         }
-        if(channel.name != undefined && username != undefined){
+        if(channel.name !== undefined && username !== undefined){
             sendMessage(subscribedUser.chatID, `The user _${username}_ that you subscribed to joined the voice channel _${channel.name}_.`)
         }
     });

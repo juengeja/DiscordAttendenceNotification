@@ -82,11 +82,11 @@ app.post("/api/v1/persistence/post/user/", async function (req: any, res: any) {
 });
 
 // deno-lint-ignore no-explicit-any
-app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
-    const newGuild = req.parsedBody
+app.post("/api/v1/persistence/post/guild/", async function (req: any, res: any) {
+    const newGuild = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newGuild.userID !== undefined && newGuild.chatID !== undefined){
-        if(newGuild.name === "") newGuild.name = undefined
+    if(await newGuild.userID !== undefined && await newGuild.chatID !== undefined){
+        if(await newGuild.name === "") newGuild.name = undefined
         insertGuild(newGuild)
         res.send({"status":"success"})
     }else{
@@ -95,61 +95,61 @@ app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/delete/channel/", function (req: any, res: any) {
-    const channel = req.parsedBody
+app.delete("/api/v1/persistence/delete/channel/", async function (req: any, res: any) {
+    const channel = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(channel.chatID !== undefined && channel.channelID !== undefined){
+    if(await channel.chatID !== undefined && await channel.channelID !== undefined){
         deleteChannel(channel)
     }
     res.send({"status":"deleted given channel (if existed)"})
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/delete/user/", function (req: any, res: any) {
-    const user = req.parsedBody
+app.delete("/api/v1/persistence/delete/user/", async function (req: any, res: any) {
+    const user = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(user.chatID !== undefined && user.userID !== undefined){
+    if(await user.chatID !== undefined && await user.userID !== undefined){
         deleteUser(user)
     }
     res.send({"status":"deleted given user (if existed)"})
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/delete/guild/", function (req: any, res: any) {
-    const guild = req.parsedBody
+app.delete("/api/v1/persistence/delete/guild/", async function (req: any, res: any) {
+    const guild = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(guild.chatID !== undefined && guild.guildID !== undefined){
+    if(await guild.chatID !== undefined && await guild.guildID !== undefined){
         deleteGuild(guild)
     }
     res.send({"status":"deleted given guild (if existed)"})
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/deleteAll/channel/", function (req: any, res: any) {
-    const channel = req.parsedBody
+app.delete("/api/v1/persistence/deleteAll/channel/", async function (req: any, res: any) {
+    const channel = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(channel.chatID !== undefined){
-        deleteChannelsByID(parseInt(channel.chatID));
+    if(await channel.chatID !== undefined){
+        deleteChannelsByID(parseInt(await channel.chatID));
     }
     res.send({"status":"deleted given channels (if existed)"})
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/deleteAll/user/", function (req: any, res: any) {
-    const user = req.parsedBody
+app.delete("/api/v1/persistence/deleteAll/user/", async function (req: any, res: any) {
+    const user = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(user.chatID !== undefined){
-        deleteUsersByID(parseInt(user.chatID));
+    if(await user.chatID !== undefined){
+        deleteUsersByID(parseInt(await user.chatID));
     }
     res.send({"status":"deleted given users (if existed)"})
 });
 
 // deno-lint-ignore no-explicit-any
-app.delete("/api/v1/persistence/deleteAll/guild/", function (req: any, res: any) {
-    const guild = req.parsedBody
+app.delete("/api/v1/persistence/deleteAll/guild/", async function (req: any, res: any) {
+    const guild = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(guild.chatID !== undefined){
-        deleteGuildsByID(parseInt(guild.chatID));
+    if(await guild.chatID !== undefined){
+        deleteGuildsByID(parseInt(await guild.chatID));
     }
     res.send({"status":"deleted given guilds (if existed)"})
 });
