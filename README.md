@@ -26,6 +26,8 @@ Füge die kopierte ID in das entsprechende linke Feld ein. Nun kannst du noch ei
 
 Unter den Eingabefeldern wird dir eine Tabelle mit deinen ausgewählten Benachrichtigungseinstellungen angezeigt. Über den **DELETE**-Button in jeder Zeile lässt sich der Eintrag wieder löschen.
 
+Wenn man eine **Guild** hinzufügt, so wird diese _gemuted_. Diese Funktion dient dazu, doppelte Benachrichtigungen (weil der ausgewählte User auf mehreren Servern ist, auf denen der Bot auch ist) zu vermeiden. Da die Discord-API die für diese Funktion benötigten Daten jedoch nicht immer liefert, funktioniert auch das Muten nicht perfekt.
+
 ## Komponenten
 
 Unser Projekt setzt sich aus einem **Backend**, einem **Frontend** und den beiden **Bots** zusammen.
