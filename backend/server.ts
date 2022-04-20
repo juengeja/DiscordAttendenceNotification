@@ -57,8 +57,8 @@ app.use(json());
 app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
     const newChannel = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newChannel.channelID != undefined && newChannel.chatID != undefined){
-        if(newChannel.name == "") newChannel.name = undefined
+    if(newChannel.channelID !== undefined && newChannel.chatID !== undefined){
+        if(newChannel.name === "") newChannel.name = undefined
         insertChannel(newChannel)
         res.send({"status":"success"})
     }else{
@@ -70,8 +70,8 @@ app.post("/api/v1/persistence/post/channel/", function (req: any, res: any) {
 app.post("/api/v1/persistence/post/user/", function (req: any, res: any) {
     const newUser = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newUser.userID != undefined && newUser.chatID != undefined){
-        if(newUser.name == "") newUser.name = undefined
+    if(newUser.userID !== undefined && newUser.chatID !== undefined){
+        if(newUser.name === "") newUser.name = undefined
         insertUser(newUser)
         res.send({"status":"success"})
     }else{
@@ -83,8 +83,8 @@ app.post("/api/v1/persistence/post/user/", function (req: any, res: any) {
 app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
     const newGuild = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(newGuild.userID != undefined && newGuild.chatID != undefined){
-        if(newGuild.name == "") newGuild.name = undefined
+    if(newGuild.userID !== undefined && newGuild.chatID !== undefined){
+        if(newGuild.name === "") newGuild.name = undefined
         insertGuild(newGuild)
         res.send({"status":"success"})
     }else{
@@ -96,7 +96,7 @@ app.post("/api/v1/persistence/post/guild/", function (req: any, res: any) {
 app.delete("/api/v1/persistence/delete/channel/", function (req: any, res: any) {
     const channel = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(channel.chatID != undefined && channel.channelID != undefined){
+    if(channel.chatID !== undefined && channel.channelID !== undefined){
         deleteChannel(channel)
     }
     res.send({"status":"deleted given channel (if existed)"})
@@ -106,7 +106,7 @@ app.delete("/api/v1/persistence/delete/channel/", function (req: any, res: any) 
 app.delete("/api/v1/persistence/delete/user/", function (req: any, res: any) {
     const user = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(user.chatID != undefined && user.userID != undefined){
+    if(user.chatID !== undefined && user.userID !== undefined){
         deleteUser(user)
     }
     res.send({"status":"deleted given user (if existed)"})
@@ -116,7 +116,7 @@ app.delete("/api/v1/persistence/delete/user/", function (req: any, res: any) {
 app.delete("/api/v1/persistence/delete/guild/", function (req: any, res: any) {
     const guild = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(guild.chatID != undefined && guild.guildID != undefined){
+    if(guild.chatID !== undefined && guild.guildID !== undefined){
         deleteGuild(guild)
     }
     res.send({"status":"deleted given guild (if existed)"})
@@ -126,7 +126,7 @@ app.delete("/api/v1/persistence/delete/guild/", function (req: any, res: any) {
 app.delete("/api/v1/persistence/deleteAll/channel/", function (req: any, res: any) {
     const channel = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(channel.chatID != undefined){
+    if(channel.chatID !== undefined){
         deleteChannelsByID(parseInt(channel.chatID));
     }
     res.send({"status":"deleted given channels (if existed)"})
@@ -136,7 +136,7 @@ app.delete("/api/v1/persistence/deleteAll/channel/", function (req: any, res: an
 app.delete("/api/v1/persistence/deleteAll/user/", function (req: any, res: any) {
     const user = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(user.chatID != undefined){
+    if(user.chatID !== undefined){
         deleteUsersByID(parseInt(user.chatID));
     }
     res.send({"status":"deleted given users (if existed)"})
@@ -146,7 +146,7 @@ app.delete("/api/v1/persistence/deleteAll/user/", function (req: any, res: any) 
 app.delete("/api/v1/persistence/deleteAll/guild/", function (req: any, res: any) {
     const guild = req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(guild.chatID != undefined){
+    if(guild.chatID !== undefined){
         deleteGuildsByID(parseInt(guild.chatID));
     }
     res.send({"status":"deleted given guilds (if existed)"})
