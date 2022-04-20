@@ -74,19 +74,19 @@
   async function addUserData() {
     if(specificChannel !== "" && chatID !== undefined && /^\d+$/.test(specificChannel)){
       if(channelNickname === "") channelNickname = undefined;
-      const addChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: JSON.parse({"channelID":specificChannel, "chatID":chatID, "name":channelNickname}), headers: {'Content-Type': 'application/json'}});
+      const addChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: await JSON.parse({"channelID":specificChannel, "chatID":chatID, "name":channelNickname}), headers: {'Content-Type': 'application/json'}});
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
     }
     if(discordUser !== "" && chatID !== undefined && /^\d+$/.test(discordUser)){
       if(userNickname === "") userNickname = undefined;
-      const addUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: JSON.parse({"userID":discordUser, "chatID":chatID, "name":userNickname}), headers: {'Content-Type': 'application/json'}});
+      const addUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: await JSON.parse({"userID":discordUser, "chatID":chatID, "name":userNickname}), headers: {'Content-Type': 'application/json'}});
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
     }
     if(discordServer !== "" && chatID !== undefined && /^\d+$/.test(discordServer)){
       if(serverNickname === "") serverNickname = undefined;
-      const addGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: JSON.parse({"guildID":discordServer, "chatID":chatID, "name":serverNickname}), headers: {'Content-Type': 'application/json'}});
+      const addGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: await JSON.parse({"guildID":discordServer, "chatID":chatID, "name":serverNickname}), headers: {'Content-Type': 'application/json'}});
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
     }
@@ -94,17 +94,17 @@
   }
   async function deleteUserData(deleteChannel, deleteUser, deleteGuild) {
     if(deleteChannel.channelID !== undefined && deleteChannel.chatID !== undefined && deleteChannel.name !== undefined){
-      const deleteChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/channel/`, {signal: signal, method: "DELETE", body: deleteChannel});
+      const deleteChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/channel/`, {signal: signal, method: "DELETE", body: deleteChannel, headers: {'Content-Type': 'application/json'}});
       const deleteChannelResponseJson = await deleteChannelResponse.json();
       console.log(await deleteChannelResponseJson.status);
     }
     if(deleteUser.userID !== undefined && deleteUser.chatID !== undefined && deleteUser.name !== undefined){
-      const deleteUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/user/`, {signal: signal, method: "DELETE", body: deleteUser});
+      const deleteUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/user/`, {signal: signal, method: "DELETE", body: deleteUser, headers: {'Content-Type': 'application/json'}});
       const deleteUserResponseJson = await deleteUserResponse.json();
       console.log(await deleteUserResponseJson.status);
     }
     if(deleteGuild.guildID !== undefined && deleteGuild.chatID !== undefined && deleteGuild.name !== undefined){
-      const deleteGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/guild/`, {signal: signal, method: "DELETE", body: deleteGuild});
+      const deleteGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/guild/`, {signal: signal, method: "DELETE", body: deleteGuild, headers: {'Content-Type': 'application/json'}});
       const deleteGuildResponseJson = await deleteGuildResponse.json();
       console.log(await deleteGuildResponseJson.status);
     }
