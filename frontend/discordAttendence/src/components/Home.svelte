@@ -72,23 +72,29 @@
     guildTableData = await guildResponse.json();
   }
   async function addUserData() {
-    if(!isNaN(specificChannel) && !isNaN(chatID)){
+    if(specificChannel !== "" && chatID !== undefined && typeof(specificChannel) === Number){
       if(channelNickname === "") channelNickname = undefined;
       const addChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: {"channelID":specificChannel, "chatID":chatID, "name":channelNickname}});
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
+    } else {
+      alert("IDs have to be valid numbers!")
     }
-    if(!isNaN(discordUser) && !isNaN(chatID)){
+    if(discordUser !== "" && chatID !== undefined && typeof(discordUser) === Number){
       if(userNickname === "") userNickname = undefined;
       const addUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: {"userID":discordUser, "chatID":chatID, "name":userNickname}});
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
+    } else {
+      alert("IDs have to be valid numbers!")
     }
-    if(!isNaN(discordServer) && !isNaN(chatID)){
+    if(discordServer !== "" && chatID !== undefined && typeof(discordServer) === Number){
       if(serverNickname === "") serverNickname = undefined;
       const addGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: {"guildID":discordServer, "chatID":chatID, "name":serverNickname}});
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
+    } else {
+      alert("IDs have to be valid numbers!")
     }
     reload();
   }
