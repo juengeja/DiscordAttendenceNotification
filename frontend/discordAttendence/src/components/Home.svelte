@@ -62,19 +62,19 @@
    //} );
   
   async function loadUserData() {
-    const channelResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
+    const channelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
     channelTableData = await channelResponse.json();
 
-    const userResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/userByID/${chatID}`, {signal: signal, method: "GET"});
+    const userResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/get/userByID/${chatID}`, {signal: signal, method: "GET"});
     userTableData = await userResponse.json();
 
-    const guildResponse = await fetch(`http://localhost:8800/api/v1/persistence/get/guildByID/${chatID}`, {signal: signal, method: "GET"});
+    const guildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/get/guildByID/${chatID}`, {signal: signal, method: "GET"});
     guildTableData = await guildResponse.json();
   }
   async function addUserData() {
     if(specificChannel !== "" && chatID !== undefined && typeof(specificChannel) === Number){
       if(channelNickname === "") channelNickname = undefined;
-      const addChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: {"channelID":specificChannel, "chatID":chatID, "name":channelNickname}});
+      const addChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: {"channelID":specificChannel, "chatID":chatID, "name":channelNickname}});
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
     } else {
@@ -82,7 +82,7 @@
     }
     if(discordUser !== "" && chatID !== undefined && typeof(discordUser) === Number){
       if(userNickname === "") userNickname = undefined;
-      const addUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: {"userID":discordUser, "chatID":chatID, "name":userNickname}});
+      const addUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: {"userID":discordUser, "chatID":chatID, "name":userNickname}});
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
     } else {
@@ -90,7 +90,7 @@
     }
     if(discordServer !== "" && chatID !== undefined && typeof(discordServer) === Number){
       if(serverNickname === "") serverNickname = undefined;
-      const addGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: {"guildID":discordServer, "chatID":chatID, "name":serverNickname}});
+      const addGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: {"guildID":discordServer, "chatID":chatID, "name":serverNickname}});
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
     } else {
@@ -100,17 +100,17 @@
   }
   async function deleteUserData(deleteChannel, deleteUser, deleteGuild) {
     if(deleteChannel.channelID !== undefined && deleteChannel.chatID !== undefined && deleteChannel.name !== undefined){
-      const deleteChannelResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/channel/`, {signal: signal, method: "DELETE", body: deleteChannel});
+      const deleteChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/channel/`, {signal: signal, method: "DELETE", body: deleteChannel});
       const deleteChannelResponseJson = await deleteChannelResponse.json();
       console.log(await deleteChannelResponseJson.status);
     }
     if(deleteUser.userID !== undefined && deleteUser.chatID !== undefined && deleteUser.name !== undefined){
-      const deleteUserResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/user/`, {signal: signal, method: "DELETE", body: deleteUser});
+      const deleteUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/user/`, {signal: signal, method: "DELETE", body: deleteUser});
       const deleteUserResponseJson = await deleteUserResponse.json();
       console.log(await deleteUserResponseJson.status);
     }
     if(deleteGuild.guildID !== undefined && deleteGuild.chatID !== undefined && deleteGuild.name !== undefined){
-      const deleteGuildResponse = await fetch(`http://localhost:8800/api/v1/persistence/delete/guild/`, {signal: signal, method: "DELETE", body: deleteGuild});
+      const deleteGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/delete/guild/`, {signal: signal, method: "DELETE", body: deleteGuild});
       const deleteGuildResponseJson = await deleteGuildResponse.json();
       console.log(await deleteGuildResponseJson.status);
     }

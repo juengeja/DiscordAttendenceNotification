@@ -28,7 +28,7 @@ app.get("/012b5562f52ecbcafdbd3a676c923b7e79c427735af2c0a043abf53d83b61ae6.png",
 // deno-lint-ignore no-explicit-any
 app.get("/api/v1/persistence/get/chatId/:chatID", async function (req: any, res: any) {
     const chatID = await findChatByChatID(parseInt(req.params.chatID))
-    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
     if(chatID?.chatID) res.send({"exists": true})
     else res.send({"exists":false})
 });

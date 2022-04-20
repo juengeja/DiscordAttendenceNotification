@@ -10,7 +10,7 @@
   
   async function handleClickSubmitLoginParent(){
     
-    const response = await fetch(`http://localhost:8800/api/v1/persistence/get/chatId/${chatID}`, {signal: signal, method: "GET"})
+    const response = await fetch(`http://5.45.107.109:8800/api/v1/persistence/get/chatID/${chatID}`, {signal: signal, method: "GET"})
     const responseJson = await response.json();
     
     if(await responseJson.exists === true){
