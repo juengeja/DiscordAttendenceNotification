@@ -74,23 +74,23 @@
   async function addUserData() {
     if(specificChannel !== "" && chatID !== undefined && /^\d+$/.test(specificChannel)){
       if(channelNickname === "") channelNickname = undefined;
-      const addChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: {"channelID":specificChannel, "chatID":chatID, "name":channelNickname}});
+      const addChannelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/channel/`, {signal: signal, method: "POST", body: JSON.parse({"channelID":specificChannel, "chatID":chatID, "name":channelNickname}), headers: {'Content-Type': 'application/json'}});
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
     }
     if(discordUser !== "" && chatID !== undefined && /^\d+$/.test(discordUser)){
       if(userNickname === "") userNickname = undefined;
-      const addUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: {"userID":discordUser, "chatID":chatID, "name":userNickname}});
+      const addUserResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/user/`, {signal: signal, method: "POST", body: JSON.parse({"userID":discordUser, "chatID":chatID, "name":userNickname}), headers: {'Content-Type': 'application/json'}});
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
     }
     if(discordServer !== "" && chatID !== undefined && /^\d+$/.test(discordServer)){
       if(serverNickname === "") serverNickname = undefined;
-      const addGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: {"guildID":discordServer, "chatID":chatID, "name":serverNickname}});
+      const addGuildResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/post/guild/`, {signal: signal, method: "POST", body: JSON.parse({"guildID":discordServer, "chatID":chatID, "name":serverNickname}), headers: {'Content-Type': 'application/json'}});
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
     }
-    //reload();
+    reload();
   }
   async function deleteUserData(deleteChannel, deleteUser, deleteGuild) {
     if(deleteChannel.channelID !== undefined && deleteChannel.chatID !== undefined && deleteChannel.name !== undefined){
