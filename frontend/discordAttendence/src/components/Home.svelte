@@ -139,7 +139,7 @@
 </div>
 
 <div class="buttons">
-  <button class="button1" on:click={() => addUserData()}>Submit</button>
+  <button class="button1" type="reset" on:click={() => addUserData()}>Submit</button>
   <button class="button3">Update</button> 
   <button class="button2" type="reset">Reset</button>
 </div>
