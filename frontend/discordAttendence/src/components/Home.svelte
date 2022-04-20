@@ -78,7 +78,7 @@
       const addChannelResponseJson = await addChannelResponse.json();
       console.log(await addChannelResponseJson.status);
     } else {
-      alert("IDs have to be valid numbers!")
+      alert(`IDs have to be valid numbers! Type: ${typeof(specificChannel)}`)
     }
     if(discordUser !== "" && chatID !== undefined && typeof(discordUser) === Number){
       if(userNickname === "") userNickname = undefined;
@@ -86,7 +86,7 @@
       const addUserResponseJson = await addUserResponse.json();
       console.log(await addUserResponseJson.status);
     } else {
-      alert("IDs have to be valid numbers!")
+      alert(`IDs have to be valid numbers! Type: ${typeof(discordUser)}`)
     }
     if(discordServer !== "" && chatID !== undefined && typeof(discordServer) === Number){
       if(serverNickname === "") serverNickname = undefined;
@@ -94,9 +94,9 @@
       const addGuildResponseJson = await addGuildResponse.json();
       console.log(await addGuildResponseJson.status);
     } else {
-      alert("IDs have to be valid numbers!")
+      alert(`IDs have to be valid numbers! Type: ${typeof(discordServer)}`)
     }
-    reload();
+    //reload();
   }
   async function deleteUserData(deleteChannel, deleteUser, deleteGuild) {
     if(deleteChannel.channelID !== undefined && deleteChannel.chatID !== undefined && deleteChannel.name !== undefined){
