@@ -85,7 +85,7 @@ app.post("/api/v1/persistence/post/user/", async function (req: any, res: any) {
 app.post("/api/v1/persistence/post/guild/", async function (req: any, res: any) {
     const newGuild = await req.parsedBody
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8800')
-    if(await newGuild.userID !== undefined && await newGuild.chatID !== undefined){
+    if(await newGuild.guildID !== undefined && await newGuild.chatID !== undefined){
         if(await newGuild.name === "") newGuild.name = undefined
         insertGuild(newGuild)
         res.send({"status":"success"})
