@@ -20,46 +20,10 @@
     {Number:3, Type: "User-Name", Name: "123123123234", Nickname: "Maier"}
   ]
 
-  let entry = document.getElementsByName("entry");
-
-  /*
-  function addTableRow() {
-    let type = "TEST";
-
-    let tabelle = document.getElementById("tabelle");
-
-    let newRow = tabelle.insertAdjacentHTML(1,type);
-    let cell1 = newRow.insertAdjacentHTML(0,"Test");
-    let cell2 = newRow.insertAdjacentHTML(1,"asdasdad");
-
-    cell1.innerHTML = type;
-  }*/
-
-  const tabellendiv = document.querySelector("tabellendiv");
-
-  function handleClick() {
-  //let btn4 = undefined;
-  let btn4 = document.querySelector(".button4")
-    //let btn = e.target
-    //btn.closest("tr").remove();
-
-  btn4.addEventListener("click", handleDelete(btn4))
-  //btn4.addEventListener("click", function (e) {
-    //console.log(e.target.closest("tr"))
+  function handleDelete() {
+  let button4 = document.querySelector(".button4")
+  button4.closest("tr").remove()
   }
-
-  function handleDelete(btn4) { 
-    let btn = btn4
-    const tr = btn4.closest("tr");
-    console.log(tr)
-    btn.closest("tr").remove();
-   }
-
-
-   //tabellendiv.addEventListener("click", function (e) {
-     //handleClick(e)
-     //alert("HI")
-   //} );
   
   async function loadUserData() {
     const channelResponse = await fetch(`http://5.45.107.109:8800/api/v1/persistence/get/channelByID/${chatID}`, {signal: signal, method: "GET"});
@@ -159,7 +123,7 @@
       {#each Object.values(row) as cell}
         <td>{cell}</td>
       {/each}
-      <button class="button4" type="reset" on:click={() => handleClick()}>Delete</button>
+      <button class="button4" type="reset" on:click={() => handleDelete(this)}>Delete</button>
     </tr>
   {/each}
   </tbody>

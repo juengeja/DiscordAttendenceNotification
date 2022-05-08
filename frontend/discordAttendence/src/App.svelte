@@ -18,9 +18,6 @@
     }else{
       alert(`Chat-ID '${chatID}' is not registered. Please contact our Telegram-Bot!`)
     }
-
-    //page = "Home";
-
   }
 </script>
 

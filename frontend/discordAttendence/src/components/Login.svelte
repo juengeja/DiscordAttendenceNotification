@@ -42,26 +42,27 @@
   font-size: 17px !important;
   cursor: pointer;
   z-index: 1;
-  padding: rem !important;
+  padding: 0.55rem !important;
   font-size:10px;
-  box-shadow: 0 5px 12px -2px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0px 10px 10px rgba(129, 113, 172, 0.3);
   text-align: center;
   }
 
   .button {
   background: rgba(255, 255, 255, 0.621);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  /*background-color: transparent;*/
-  color: rgb(52, 17, 255);
+  background-image: linear-gradient(to right, rgb(74, 46, 131) ,rgb(49, 26, 112),rgb(26, 15, 68));
+  color: rgb(161, 145, 218);
   border: none;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 17px !important;
   cursor: pointer;
-  z-index: 1;
-  padding: 1rem !important;
+  padding: 0.8rem !important;
   font-size: 0.9rem !important;
-  box-shadow: 0 5px 12px -2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 10px 5px rgba(55, 27, 99, 0.3);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   }
 .user {
   font-size: 1.1rem !important;
